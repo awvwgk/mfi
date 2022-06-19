@@ -43,18 +43,6 @@ interface mfi_swap
     module procedure mfi_cswap
     module procedure mfi_zswap
 end interface
-interface mfi_iamin
-    module procedure mfi_isamin
-    module procedure mfi_idamin
-    module procedure mfi_icamin
-    module procedure mfi_izamin
-end interface
-interface mfi_iamax
-    module procedure mfi_isamax
-    module procedure mfi_idamax
-    module procedure mfi_icamax
-    module procedure mfi_izamax
-end interface
 
 ! BLAS level 2
 interface mfi_gbmv
@@ -218,6 +206,21 @@ interface mfi_trsm
     module procedure mfi_ztrsm
 end interface
 
+! Extensions
+! BLAS level 1 - Utils / Extensions
+interface mfi_iamax
+    module procedure mfi_isamax
+    module procedure mfi_idamax
+    module procedure mfi_icamax
+    module procedure mfi_izamax
+end interface
+interface mfi_iamin
+    module procedure mfi_isamin
+    module procedure mfi_idamin
+    module procedure mfi_icamin
+    module procedure mfi_izamin
+end interface
+
 contains
 
 ! BLAS level 1
@@ -236,17 +239,17 @@ pure subroutine mfi_saxpy(x, y, a, incx, incy)
     if (present(a)) then
         local_a = a
     else
-        local_a = 1
+        local_a = 1.0_wp
     end if
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     if (present(incy)) then
         local_incy = incy
     else
-        local_incy = 1_wp
+        local_incy = 1
     end if
     N = size(X)
     call f77_axpy(n,local_a,x,local_incx,y,local_incy)
@@ -265,17 +268,17 @@ pure subroutine mfi_daxpy(x, y, a, incx, incy)
     if (present(a)) then
         local_a = a
     else
-        local_a = 1
+        local_a = 1.0_wp
     end if
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     if (present(incy)) then
         local_incy = incy
     else
-        local_incy = 1_wp
+        local_incy = 1
     end if
     N = size(X)
     call f77_axpy(n,local_a,x,local_incx,y,local_incy)
@@ -294,17 +297,17 @@ pure subroutine mfi_caxpy(x, y, a, incx, incy)
     if (present(a)) then
         local_a = a
     else
-        local_a = 1
+        local_a = 1.0_wp
     end if
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     if (present(incy)) then
         local_incy = incy
     else
-        local_incy = 1_wp
+        local_incy = 1
     end if
     N = size(X)
     call f77_axpy(n,local_a,x,local_incx,y,local_incy)
@@ -323,17 +326,17 @@ pure subroutine mfi_zaxpy(x, y, a, incx, incy)
     if (present(a)) then
         local_a = a
     else
-        local_a = 1
+        local_a = 1.0_wp
     end if
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     if (present(incy)) then
         local_incy = incy
     else
-        local_incy = 1_wp
+        local_incy = 1
     end if
     N = size(X)
     call f77_axpy(n,local_a,x,local_incx,y,local_incy)
@@ -350,12 +353,12 @@ pure subroutine mfi_scopy(x, y, incx, incy)
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     if (present(incy)) then
         local_incy = incy
     else
-        local_incy = 1_wp
+        local_incy = 1
     end if
     N = size(X)
     call f77_copy(n,x,local_incx,y,local_incy)
@@ -372,12 +375,12 @@ pure subroutine mfi_dcopy(x, y, incx, incy)
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     if (present(incy)) then
         local_incy = incy
     else
-        local_incy = 1_wp
+        local_incy = 1
     end if
     N = size(X)
     call f77_copy(n,x,local_incx,y,local_incy)
@@ -394,12 +397,12 @@ pure subroutine mfi_ccopy(x, y, incx, incy)
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     if (present(incy)) then
         local_incy = incy
     else
-        local_incy = 1_wp
+        local_incy = 1
     end if
     N = size(X)
     call f77_copy(n,x,local_incx,y,local_incy)
@@ -416,12 +419,12 @@ pure subroutine mfi_zcopy(x, y, incx, incy)
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     if (present(incy)) then
         local_incy = incy
     else
-        local_incy = 1_wp
+        local_incy = 1
     end if
     N = size(X)
     call f77_copy(n,x,local_incx,y,local_incy)
@@ -441,12 +444,12 @@ pure function mfi_cdotu(x, y, incx, incy)
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     if (present(incy)) then
         local_incy = incy
     else
-        local_incy = 1_wp
+        local_incy = 1
     end if
     N = size(X)
     mfi_cdotu = f77_dotu(n,x,local_incx,y,local_incy)
@@ -464,12 +467,12 @@ pure function mfi_zdotu(x, y, incx, incy)
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     if (present(incy)) then
         local_incy = incy
     else
-        local_incy = 1_wp
+        local_incy = 1
     end if
     N = size(X)
     mfi_zdotu = f77_dotu(n,x,local_incx,y,local_incy)
@@ -487,12 +490,12 @@ pure function mfi_cdotc(x, y, incx, incy)
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     if (present(incy)) then
         local_incy = incy
     else
-        local_incy = 1_wp
+        local_incy = 1
     end if
     N = size(X)
     mfi_cdotc = f77_dotc(n,x,local_incx,y,local_incy)
@@ -510,12 +513,12 @@ pure function mfi_zdotc(x, y, incx, incy)
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     if (present(incy)) then
         local_incy = incy
     else
-        local_incy = 1_wp
+        local_incy = 1
     end if
     N = size(X)
     mfi_zdotc = f77_dotc(n,x,local_incx,y,local_incy)
@@ -536,12 +539,12 @@ pure subroutine mfi_srotm(x, y, param, incx, incy)
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     if (present(incy)) then
         local_incy = incy
     else
-        local_incy = 1_wp
+        local_incy = 1
     end if
     N = size(X)
     call f77_rotm(n,x,local_incx,y,local_incy,param)
@@ -559,12 +562,12 @@ pure subroutine mfi_drotm(x, y, param, incx, incy)
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     if (present(incy)) then
         local_incy = incy
     else
-        local_incy = 1_wp
+        local_incy = 1
     end if
     N = size(X)
     call f77_rotm(n,x,local_incx,y,local_incy,param)
@@ -583,12 +586,12 @@ pure subroutine mfi_sswap(x, y, incx, incy)
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     if (present(incy)) then
         local_incy = incy
     else
-        local_incy = 1_wp
+        local_incy = 1
     end if
     N = size(X)
     call f77_swap(n,x,local_incx,y,local_incy)
@@ -605,12 +608,12 @@ pure subroutine mfi_dswap(x, y, incx, incy)
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     if (present(incy)) then
         local_incy = incy
     else
-        local_incy = 1_wp
+        local_incy = 1
     end if
     N = size(X)
     call f77_swap(n,x,local_incx,y,local_incy)
@@ -627,12 +630,12 @@ pure subroutine mfi_cswap(x, y, incx, incy)
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     if (present(incy)) then
         local_incy = incy
     else
-        local_incy = 1_wp
+        local_incy = 1
     end if
     N = size(X)
     call f77_swap(n,x,local_incx,y,local_incy)
@@ -649,136 +652,16 @@ pure subroutine mfi_zswap(x, y, incx, incy)
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     if (present(incy)) then
         local_incy = incy
     else
-        local_incy = 1_wp
+        local_incy = 1
     end if
     N = size(X)
     call f77_swap(n,x,local_incx,y,local_incy)
 end subroutine
-pure function mfi_isamin(x, incx)
-    integer, parameter :: wp = REAL32
-    integer :: mfi_isamin
-    real(wp), intent(in) :: x(:)
-    integer, intent(in), optional :: incx
-    integer :: local_incx
-    integer :: n
-    if (present(incx)) then
-        local_incx = incx
-    else
-        local_incx = 1_wp
-    end if
-    n = size(x)
-    mfi_isamin = f77_iamin(n,x,local_incx)
-end function
-pure function mfi_idamin(x, incx)
-    integer, parameter :: wp = REAL64
-    integer :: mfi_idamin
-    real(wp), intent(in) :: x(:)
-    integer, intent(in), optional :: incx
-    integer :: local_incx
-    integer :: n
-    if (present(incx)) then
-        local_incx = incx
-    else
-        local_incx = 1_wp
-    end if
-    n = size(x)
-    mfi_idamin = f77_iamin(n,x,local_incx)
-end function
-pure function mfi_icamin(x, incx)
-    integer, parameter :: wp = REAL32
-    integer :: mfi_icamin
-    complex(wp), intent(in) :: x(:)
-    integer, intent(in), optional :: incx
-    integer :: local_incx
-    integer :: n
-    if (present(incx)) then
-        local_incx = incx
-    else
-        local_incx = 1_wp
-    end if
-    n = size(x)
-    mfi_icamin = f77_iamin(n,x,local_incx)
-end function
-pure function mfi_izamin(x, incx)
-    integer, parameter :: wp = REAL64
-    integer :: mfi_izamin
-    complex(wp), intent(in) :: x(:)
-    integer, intent(in), optional :: incx
-    integer :: local_incx
-    integer :: n
-    if (present(incx)) then
-        local_incx = incx
-    else
-        local_incx = 1_wp
-    end if
-    n = size(x)
-    mfi_izamin = f77_iamin(n,x,local_incx)
-end function
-pure function mfi_isamax(x, incx)
-    integer, parameter :: wp = REAL32
-    integer :: mfi_isamax
-    real(wp), intent(in) :: x(:)
-    integer, intent(in), optional :: incx
-    integer :: local_incx
-    integer :: n
-    if (present(incx)) then
-        local_incx = incx
-    else
-        local_incx = 1_wp
-    end if
-    n = size(x)
-    mfi_isamax = f77_iamax(n,x,local_incx)
-end function
-pure function mfi_idamax(x, incx)
-    integer, parameter :: wp = REAL64
-    integer :: mfi_idamax
-    real(wp), intent(in) :: x(:)
-    integer, intent(in), optional :: incx
-    integer :: local_incx
-    integer :: n
-    if (present(incx)) then
-        local_incx = incx
-    else
-        local_incx = 1_wp
-    end if
-    n = size(x)
-    mfi_idamax = f77_iamax(n,x,local_incx)
-end function
-pure function mfi_icamax(x, incx)
-    integer, parameter :: wp = REAL32
-    integer :: mfi_icamax
-    complex(wp), intent(in) :: x(:)
-    integer, intent(in), optional :: incx
-    integer :: local_incx
-    integer :: n
-    if (present(incx)) then
-        local_incx = incx
-    else
-        local_incx = 1_wp
-    end if
-    n = size(x)
-    mfi_icamax = f77_iamax(n,x,local_incx)
-end function
-pure function mfi_izamax(x, incx)
-    integer, parameter :: wp = REAL64
-    integer :: mfi_izamax
-    complex(wp), intent(in) :: x(:)
-    integer, intent(in), optional :: incx
-    integer :: local_incx
-    integer :: n
-    if (present(incx)) then
-        local_incx = incx
-    else
-        local_incx = 1_wp
-    end if
-    n = size(x)
-    mfi_izamax = f77_iamax(n,x,local_incx)
-end function
 
 ! BLAS level 2
 pure subroutine mfi_sgbmv(a, x, y, kl, m, alpha, beta, trans, incx, incy)
@@ -821,22 +704,22 @@ pure subroutine mfi_sgbmv(a, x, y, kl, m, alpha, beta, trans, incx, incy)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     if (present(beta)) then
         local_beta = beta
     else
-        local_beta = 0_wp
+        local_beta = 0.0_wp
     end if
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     if (present(incy)) then
         local_incy = incy
     else
-        local_incy = 1_wp
+        local_incy = 1
     end if
     ku = lda-local_kl-1
     call f77_gbmv(local_trans,local_m,n,local_kl,ku,local_alpha,a,lda,x,local_incx,local_beta,y,local_incy)
@@ -881,22 +764,22 @@ pure subroutine mfi_dgbmv(a, x, y, kl, m, alpha, beta, trans, incx, incy)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     if (present(beta)) then
         local_beta = beta
     else
-        local_beta = 0_wp
+        local_beta = 0.0_wp
     end if
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     if (present(incy)) then
         local_incy = incy
     else
-        local_incy = 1_wp
+        local_incy = 1
     end if
     ku = lda-local_kl-1
     call f77_gbmv(local_trans,local_m,n,local_kl,ku,local_alpha,a,lda,x,local_incx,local_beta,y,local_incy)
@@ -941,22 +824,22 @@ pure subroutine mfi_cgbmv(a, x, y, kl, m, alpha, beta, trans, incx, incy)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     if (present(beta)) then
         local_beta = beta
     else
-        local_beta = 0_wp
+        local_beta = 0.0_wp
     end if
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     if (present(incy)) then
         local_incy = incy
     else
-        local_incy = 1_wp
+        local_incy = 1
     end if
     ku = lda-local_kl-1
     call f77_gbmv(local_trans,local_m,n,local_kl,ku,local_alpha,a,lda,x,local_incx,local_beta,y,local_incy)
@@ -1001,22 +884,22 @@ pure subroutine mfi_zgbmv(a, x, y, kl, m, alpha, beta, trans, incx, incy)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     if (present(beta)) then
         local_beta = beta
     else
-        local_beta = 0_wp
+        local_beta = 0.0_wp
     end if
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     if (present(incy)) then
         local_incy = incy
     else
-        local_incy = 1_wp
+        local_incy = 1
     end if
     ku = lda-local_kl-1
     call f77_gbmv(local_trans,local_m,n,local_kl,ku,local_alpha,a,lda,x,local_incx,local_beta,y,local_incy)
@@ -1045,22 +928,22 @@ pure subroutine mfi_sgemv(a, x, y, trans, alpha, beta, incx, incy)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     if (present(beta)) then
         local_beta = beta
     else
-        local_beta = 0_wp
+        local_beta = 0.0_wp
     end if
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     if (present(incy)) then
         local_incy = incy
     else
-        local_incy = 1_wp
+        local_incy = 1
     end if
     m = size(a,1)
     n = size(a,2)
@@ -1091,22 +974,22 @@ pure subroutine mfi_dgemv(a, x, y, trans, alpha, beta, incx, incy)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     if (present(beta)) then
         local_beta = beta
     else
-        local_beta = 0_wp
+        local_beta = 0.0_wp
     end if
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     if (present(incy)) then
         local_incy = incy
     else
-        local_incy = 1_wp
+        local_incy = 1
     end if
     m = size(a,1)
     n = size(a,2)
@@ -1137,22 +1020,22 @@ pure subroutine mfi_cgemv(a, x, y, trans, alpha, beta, incx, incy)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     if (present(beta)) then
         local_beta = beta
     else
-        local_beta = 0_wp
+        local_beta = 0.0_wp
     end if
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     if (present(incy)) then
         local_incy = incy
     else
-        local_incy = 1_wp
+        local_incy = 1
     end if
     m = size(a,1)
     n = size(a,2)
@@ -1183,22 +1066,22 @@ pure subroutine mfi_zgemv(a, x, y, trans, alpha, beta, incx, incy)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     if (present(beta)) then
         local_beta = beta
     else
-        local_beta = 0_wp
+        local_beta = 0.0_wp
     end if
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     if (present(incy)) then
         local_incy = incy
     else
-        local_incy = 1_wp
+        local_incy = 1
     end if
     m = size(a,1)
     n = size(a,2)
@@ -1220,17 +1103,17 @@ pure subroutine mfi_sger(a, x, y, alpha, incx, incy)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     if (present(incy)) then
         local_incy = incy
     else
-        local_incy = 1_wp
+        local_incy = 1
     end if
     m = size(a,1)
     n = size(a,2)
@@ -1252,17 +1135,17 @@ pure subroutine mfi_dger(a, x, y, alpha, incx, incy)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     if (present(incy)) then
         local_incy = incy
     else
-        local_incy = 1_wp
+        local_incy = 1
     end if
     m = size(a,1)
     n = size(a,2)
@@ -1284,17 +1167,17 @@ pure subroutine mfi_cgerc(a, x, y, alpha, incx, incy)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     if (present(incy)) then
         local_incy = incy
     else
-        local_incy = 1_wp
+        local_incy = 1
     end if
     m = size(a,1)
     n = size(a,2)
@@ -1316,17 +1199,17 @@ pure subroutine mfi_zgerc(a, x, y, alpha, incx, incy)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     if (present(incy)) then
         local_incy = incy
     else
-        local_incy = 1_wp
+        local_incy = 1
     end if
     m = size(a,1)
     n = size(a,2)
@@ -1348,17 +1231,17 @@ pure subroutine mfi_cgeru(a, x, y, alpha, incx, incy)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     if (present(incy)) then
         local_incy = incy
     else
-        local_incy = 1_wp
+        local_incy = 1
     end if
     m = size(a,1)
     n = size(a,2)
@@ -1380,17 +1263,17 @@ pure subroutine mfi_zgeru(a, x, y, alpha, incx, incy)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     if (present(incy)) then
         local_incy = incy
     else
-        local_incy = 1_wp
+        local_incy = 1
     end if
     m = size(a,1)
     n = size(a,2)
@@ -1421,22 +1304,22 @@ pure subroutine mfi_chbmv(a, x, y, uplo, alpha, beta, incx, incy)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     if (present(beta)) then
         local_beta = beta
     else
-        local_beta = 0_wp
+        local_beta = 0.0_wp
     end if
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     if (present(incy)) then
         local_incy = incy
     else
-        local_incy = 1_wp
+        local_incy = 1
     end if
     k = size(a,1)-1
     lda = max(1,size(a,1))
@@ -1467,22 +1350,22 @@ pure subroutine mfi_zhbmv(a, x, y, uplo, alpha, beta, incx, incy)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     if (present(beta)) then
         local_beta = beta
     else
-        local_beta = 0_wp
+        local_beta = 0.0_wp
     end if
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     if (present(incy)) then
         local_incy = incy
     else
-        local_incy = 1_wp
+        local_incy = 1
     end if
     k = size(a,1)-1
     lda = max(1,size(a,1))
@@ -1513,22 +1396,22 @@ pure subroutine mfi_chemv(a, x, y, uplo, alpha, beta, incx, incy)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     if (present(beta)) then
         local_beta = beta
     else
-        local_beta = 0_wp
+        local_beta = 0.0_wp
     end if
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     if (present(incy)) then
         local_incy = incy
     else
-        local_incy = 1_wp
+        local_incy = 1
     end if
     lda = max(1,size(a,1))
     n = size(a,2)
@@ -1558,22 +1441,22 @@ pure subroutine mfi_zhemv(a, x, y, uplo, alpha, beta, incx, incy)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     if (present(beta)) then
         local_beta = beta
     else
-        local_beta = 0_wp
+        local_beta = 0.0_wp
     end if
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     if (present(incy)) then
         local_incy = incy
     else
-        local_incy = 1_wp
+        local_incy = 1
     end if
     lda = max(1,size(a,1))
     n = size(a,2)
@@ -1585,8 +1468,8 @@ pure subroutine mfi_cher(a, x, uplo, alpha, incx)
     complex(wp), intent(inout) :: a(:,:)
     character, intent(in), optional :: uplo
     character :: local_uplo
-    complex(wp), intent(in), optional :: alpha
-    complex(wp) :: local_alpha
+    real(wp), intent(in), optional :: alpha
+    real(wp) :: local_alpha
     integer, intent(in), optional :: incx
     integer :: local_incx
     integer :: n, lda
@@ -1598,12 +1481,12 @@ pure subroutine mfi_cher(a, x, uplo, alpha, incx)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     lda = max(1,size(a,1))
     n = size(a,2)
@@ -1615,8 +1498,8 @@ pure subroutine mfi_zher(a, x, uplo, alpha, incx)
     complex(wp), intent(inout) :: a(:,:)
     character, intent(in), optional :: uplo
     character :: local_uplo
-    complex(wp), intent(in), optional :: alpha
-    complex(wp) :: local_alpha
+    real(wp), intent(in), optional :: alpha
+    real(wp) :: local_alpha
     integer, intent(in), optional :: incx
     integer :: local_incx
     integer :: n, lda
@@ -1628,12 +1511,12 @@ pure subroutine mfi_zher(a, x, uplo, alpha, incx)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     lda = max(1,size(a,1))
     n = size(a,2)
@@ -1661,17 +1544,17 @@ pure subroutine mfi_cher2(a, x, y, uplo, alpha, incx, incy)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     if (present(incy)) then
         local_incy = incy
     else
-        local_incy = 1_wp
+        local_incy = 1
     end if
     lda = max(1,size(a,1))
     n = size(a,2)
@@ -1699,17 +1582,17 @@ pure subroutine mfi_zher2(a, x, y, uplo, alpha, incx, incy)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     if (present(incy)) then
         local_incy = incy
     else
-        local_incy = 1_wp
+        local_incy = 1
     end if
     lda = max(1,size(a,1))
     n = size(a,2)
@@ -1739,22 +1622,22 @@ pure subroutine mfi_chpmv(ap, x, y, uplo, alpha, beta, incx, incy)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     if (present(beta)) then
         local_beta = beta
     else
-        local_beta = 0_wp
+        local_beta = 0.0_wp
     end if
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     if (present(incy)) then
         local_incy = incy
     else
-        local_incy = 1_wp
+        local_incy = 1
     end if
     n = size(x)
     call f77_hpmv(local_uplo,n,local_alpha,ap,x,local_incx,local_beta,y,local_incy)
@@ -1783,22 +1666,22 @@ pure subroutine mfi_zhpmv(ap, x, y, uplo, alpha, beta, incx, incy)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     if (present(beta)) then
         local_beta = beta
     else
-        local_beta = 0_wp
+        local_beta = 0.0_wp
     end if
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     if (present(incy)) then
         local_incy = incy
     else
-        local_incy = 1_wp
+        local_incy = 1
     end if
     n = size(x)
     call f77_hpmv(local_uplo,n,local_alpha,ap,x,local_incx,local_beta,y,local_incy)
@@ -1809,8 +1692,8 @@ pure subroutine mfi_chpr(ap, x, uplo, alpha, incx)
     complex(wp), intent(inout) :: ap(:)
     character, intent(in), optional :: uplo
     character :: local_uplo
-    complex(wp), intent(in), optional :: alpha
-    complex(wp) :: local_alpha
+    real(wp), intent(in), optional :: alpha
+    real(wp) :: local_alpha
     integer, intent(in), optional :: incx
     integer :: local_incx
     integer :: n
@@ -1822,12 +1705,12 @@ pure subroutine mfi_chpr(ap, x, uplo, alpha, incx)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     n = size(x)
     call f77_hpr(local_uplo,n,local_alpha,x,local_incx,ap)
@@ -1838,8 +1721,8 @@ pure subroutine mfi_zhpr(ap, x, uplo, alpha, incx)
     complex(wp), intent(inout) :: ap(:)
     character, intent(in), optional :: uplo
     character :: local_uplo
-    complex(wp), intent(in), optional :: alpha
-    complex(wp) :: local_alpha
+    real(wp), intent(in), optional :: alpha
+    real(wp) :: local_alpha
     integer, intent(in), optional :: incx
     integer :: local_incx
     integer :: n
@@ -1851,12 +1734,12 @@ pure subroutine mfi_zhpr(ap, x, uplo, alpha, incx)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     n = size(x)
     call f77_hpr(local_uplo,n,local_alpha,x,local_incx,ap)
@@ -1883,17 +1766,17 @@ pure subroutine mfi_chpr2(ap, x, y, uplo, alpha, incx, incy)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     if (present(incy)) then
         local_incy = incy
     else
-        local_incy = 1_wp
+        local_incy = 1
     end if
     n = size(x)
     call f77_hpr2(local_uplo,n,local_alpha,x,local_incx,y,local_incy,ap)
@@ -1920,17 +1803,17 @@ pure subroutine mfi_zhpr2(ap, x, y, uplo, alpha, incx, incy)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     if (present(incy)) then
         local_incy = incy
     else
-        local_incy = 1_wp
+        local_incy = 1
     end if
     n = size(x)
     call f77_hpr2(local_uplo,n,local_alpha,x,local_incx,y,local_incy,ap)
@@ -1959,22 +1842,22 @@ pure subroutine mfi_ssbmv(a, x, y, uplo, alpha, beta, incx, incy)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     if (present(beta)) then
         local_beta = beta
     else
-        local_beta = 0_wp
+        local_beta = 0.0_wp
     end if
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     if (present(incy)) then
         local_incy = incy
     else
-        local_incy = 1_wp
+        local_incy = 1
     end if
     k = size(a,1)-1
     lda = max(1,size(a,1))
@@ -2005,22 +1888,22 @@ pure subroutine mfi_dsbmv(a, x, y, uplo, alpha, beta, incx, incy)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     if (present(beta)) then
         local_beta = beta
     else
-        local_beta = 0_wp
+        local_beta = 0.0_wp
     end if
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     if (present(incy)) then
         local_incy = incy
     else
-        local_incy = 1_wp
+        local_incy = 1
     end if
     k = size(a,1)-1
     lda = max(1,size(a,1))
@@ -2051,22 +1934,22 @@ pure subroutine mfi_sspmv(ap, x, y, uplo, alpha, beta, incx, incy)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     if (present(beta)) then
         local_beta = beta
     else
-        local_beta = 0_wp
+        local_beta = 0.0_wp
     end if
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     if (present(incy)) then
         local_incy = incy
     else
-        local_incy = 1_wp
+        local_incy = 1
     end if
     n = size(x)
     call f77_spmv(local_uplo,n,local_alpha,ap,x,local_incx,local_beta,y,local_incy)
@@ -2095,22 +1978,22 @@ pure subroutine mfi_dspmv(ap, x, y, uplo, alpha, beta, incx, incy)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     if (present(beta)) then
         local_beta = beta
     else
-        local_beta = 0_wp
+        local_beta = 0.0_wp
     end if
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     if (present(incy)) then
         local_incy = incy
     else
-        local_incy = 1_wp
+        local_incy = 1
     end if
     n = size(x)
     call f77_spmv(local_uplo,n,local_alpha,ap,x,local_incx,local_beta,y,local_incy)
@@ -2134,12 +2017,12 @@ pure subroutine mfi_sspr(ap, x, uplo, alpha, incx)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     n = size(x)
     call f77_spr(local_uplo,n,local_alpha,x,local_incx,ap)
@@ -2163,12 +2046,12 @@ pure subroutine mfi_dspr(ap, x, uplo, alpha, incx)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     n = size(x)
     call f77_spr(local_uplo,n,local_alpha,x,local_incx,ap)
@@ -2195,17 +2078,17 @@ pure subroutine mfi_sspr2(ap, x, y, uplo, alpha, incx, incy)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     if (present(incy)) then
         local_incy = incy
     else
-        local_incy = 1_wp
+        local_incy = 1
     end if
     n = size(x)
     call f77_spr2(local_uplo,n,local_alpha,x,local_incx,y,local_incy,ap)
@@ -2232,17 +2115,17 @@ pure subroutine mfi_dspr2(ap, x, y, uplo, alpha, incx, incy)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     if (present(incy)) then
         local_incy = incy
     else
-        local_incy = 1_wp
+        local_incy = 1
     end if
     n = size(x)
     call f77_spr2(local_uplo,n,local_alpha,x,local_incx,y,local_incy,ap)
@@ -2271,22 +2154,22 @@ pure subroutine mfi_ssymv(a, x, y, uplo, alpha, beta, incx, incy)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     if (present(beta)) then
         local_beta = beta
     else
-        local_beta = 0_wp
+        local_beta = 0.0_wp
     end if
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     if (present(incy)) then
         local_incy = incy
     else
-        local_incy = 1_wp
+        local_incy = 1
     end if
     lda = max(1,size(a,1))
     n = size(a,2)
@@ -2316,22 +2199,22 @@ pure subroutine mfi_dsymv(a, x, y, uplo, alpha, beta, incx, incy)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     if (present(beta)) then
         local_beta = beta
     else
-        local_beta = 0_wp
+        local_beta = 0.0_wp
     end if
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     if (present(incy)) then
         local_incy = incy
     else
-        local_incy = 1_wp
+        local_incy = 1
     end if
     lda = max(1,size(a,1))
     n = size(a,2)
@@ -2356,12 +2239,12 @@ pure subroutine mfi_ssyr(a, x, uplo, alpha, incx)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     lda = max(1,size(a,1))
     n = size(a,2)
@@ -2386,12 +2269,12 @@ pure subroutine mfi_dsyr(a, x, uplo, alpha, incx)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     lda = max(1,size(a,1))
     n = size(a,2)
@@ -2419,17 +2302,17 @@ pure subroutine mfi_ssyr2(a, x, y, uplo, alpha, incx, incy)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     if (present(incy)) then
         local_incy = incy
     else
-        local_incy = 1_wp
+        local_incy = 1
     end if
     lda = max(1,size(a,1))
     n = size(a,2)
@@ -2457,17 +2340,17 @@ pure subroutine mfi_dsyr2(a, x, y, uplo, alpha, incx, incy)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     if (present(incy)) then
         local_incy = incy
     else
-        local_incy = 1_wp
+        local_incy = 1
     end if
     lda = max(1,size(a,1))
     n = size(a,2)
@@ -2504,7 +2387,7 @@ pure subroutine mfi_stbmv(a, x, uplo, trans, diag, incx)
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     k = size(a,1)-1
     lda = max(1,size(a,1))
@@ -2542,7 +2425,7 @@ pure subroutine mfi_dtbmv(a, x, uplo, trans, diag, incx)
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     k = size(a,1)-1
     lda = max(1,size(a,1))
@@ -2580,7 +2463,7 @@ pure subroutine mfi_ctbmv(a, x, uplo, trans, diag, incx)
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     k = size(a,1)-1
     lda = max(1,size(a,1))
@@ -2618,7 +2501,7 @@ pure subroutine mfi_ztbmv(a, x, uplo, trans, diag, incx)
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     k = size(a,1)-1
     lda = max(1,size(a,1))
@@ -2656,7 +2539,7 @@ pure subroutine mfi_stbsv(a, x, uplo, trans, diag, incx)
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     k = size(a,1)-1
     lda = max(1,size(a,1))
@@ -2694,7 +2577,7 @@ pure subroutine mfi_dtbsv(a, x, uplo, trans, diag, incx)
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     k = size(a,1)-1
     lda = max(1,size(a,1))
@@ -2732,7 +2615,7 @@ pure subroutine mfi_ctbsv(a, x, uplo, trans, diag, incx)
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     k = size(a,1)-1
     lda = max(1,size(a,1))
@@ -2770,7 +2653,7 @@ pure subroutine mfi_ztbsv(a, x, uplo, trans, diag, incx)
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     k = size(a,1)-1
     lda = max(1,size(a,1))
@@ -2808,7 +2691,7 @@ pure subroutine mfi_stpmv(ap, x, uplo, trans, diag, incx)
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     n = size(x)
     call f77_tpmv(local_uplo,local_trans,local_diag,n,ap,x,local_incx)
@@ -2844,7 +2727,7 @@ pure subroutine mfi_dtpmv(ap, x, uplo, trans, diag, incx)
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     n = size(x)
     call f77_tpmv(local_uplo,local_trans,local_diag,n,ap,x,local_incx)
@@ -2880,7 +2763,7 @@ pure subroutine mfi_ctpmv(ap, x, uplo, trans, diag, incx)
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     n = size(x)
     call f77_tpmv(local_uplo,local_trans,local_diag,n,ap,x,local_incx)
@@ -2916,7 +2799,7 @@ pure subroutine mfi_ztpmv(ap, x, uplo, trans, diag, incx)
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     n = size(x)
     call f77_tpmv(local_uplo,local_trans,local_diag,n,ap,x,local_incx)
@@ -2952,7 +2835,7 @@ pure subroutine mfi_stpsv(ap, x, uplo, trans, diag, incx)
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     n = size(x)
     call f77_tpsv(local_uplo,local_trans,local_diag,n,ap,x,local_incx)
@@ -2988,7 +2871,7 @@ pure subroutine mfi_dtpsv(ap, x, uplo, trans, diag, incx)
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     n = size(x)
     call f77_tpsv(local_uplo,local_trans,local_diag,n,ap,x,local_incx)
@@ -3024,7 +2907,7 @@ pure subroutine mfi_ctpsv(ap, x, uplo, trans, diag, incx)
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     n = size(x)
     call f77_tpsv(local_uplo,local_trans,local_diag,n,ap,x,local_incx)
@@ -3060,7 +2943,7 @@ pure subroutine mfi_ztpsv(ap, x, uplo, trans, diag, incx)
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     n = size(x)
     call f77_tpsv(local_uplo,local_trans,local_diag,n,ap,x,local_incx)
@@ -3096,7 +2979,7 @@ pure subroutine mfi_strmv(a, x, uplo, trans, diag, incx)
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     lda = max(1,size(a,1))
     n = size(a,2)
@@ -3133,7 +3016,7 @@ pure subroutine mfi_dtrmv(a, x, uplo, trans, diag, incx)
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     lda = max(1,size(a,1))
     n = size(a,2)
@@ -3170,7 +3053,7 @@ pure subroutine mfi_ctrmv(a, x, uplo, trans, diag, incx)
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     lda = max(1,size(a,1))
     n = size(a,2)
@@ -3207,7 +3090,7 @@ pure subroutine mfi_ztrmv(a, x, uplo, trans, diag, incx)
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     lda = max(1,size(a,1))
     n = size(a,2)
@@ -3244,7 +3127,7 @@ pure subroutine mfi_strsv(a, x, uplo, trans, diag, incx)
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     lda = max(1,size(a,1))
     n = size(a,2)
@@ -3281,7 +3164,7 @@ pure subroutine mfi_dtrsv(a, x, uplo, trans, diag, incx)
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     lda = max(1,size(a,1))
     n = size(a,2)
@@ -3318,7 +3201,7 @@ pure subroutine mfi_ctrsv(a, x, uplo, trans, diag, incx)
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     lda = max(1,size(a,1))
     n = size(a,2)
@@ -3355,7 +3238,7 @@ pure subroutine mfi_ztrsv(a, x, uplo, trans, diag, incx)
     if (present(incx)) then
         local_incx = incx
     else
-        local_incx = 1_wp
+        local_incx = 1
     end if
     lda = max(1,size(a,1))
     n = size(a,2)
@@ -3390,12 +3273,12 @@ pure subroutine mfi_sgemm(a, b, c, transa, transb, alpha, beta)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     if (present(beta)) then
         local_beta = beta
     else
-        local_beta = 0_wp
+        local_beta = 0.0_wp
     end if
     lda = max(1,size(a,1))
     ldb = max(1,size(b,1))
@@ -3436,12 +3319,12 @@ pure subroutine mfi_dgemm(a, b, c, transa, transb, alpha, beta)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     if (present(beta)) then
         local_beta = beta
     else
-        local_beta = 0_wp
+        local_beta = 0.0_wp
     end if
     lda = max(1,size(a,1))
     ldb = max(1,size(b,1))
@@ -3482,12 +3365,12 @@ pure subroutine mfi_cgemm(a, b, c, transa, transb, alpha, beta)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     if (present(beta)) then
         local_beta = beta
     else
-        local_beta = 0_wp
+        local_beta = 0.0_wp
     end if
     lda = max(1,size(a,1))
     ldb = max(1,size(b,1))
@@ -3528,12 +3411,12 @@ pure subroutine mfi_zgemm(a, b, c, transa, transb, alpha, beta)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     if (present(beta)) then
         local_beta = beta
     else
-        local_beta = 0_wp
+        local_beta = 0.0_wp
     end if
     lda = max(1,size(a,1))
     ldb = max(1,size(b,1))
@@ -3574,12 +3457,12 @@ pure subroutine mfi_chemm(a, b, c, side, uplo, alpha, beta)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     if (present(beta)) then
         local_beta = beta
     else
-        local_beta = 0_wp
+        local_beta = 0.0_wp
     end if
     lda = max(1,size(a,1))
     ldb = max(1,size(b,1))
@@ -3615,12 +3498,12 @@ pure subroutine mfi_zhemm(a, b, c, side, uplo, alpha, beta)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     if (present(beta)) then
         local_beta = beta
     else
-        local_beta = 0_wp
+        local_beta = 0.0_wp
     end if
     lda = max(1,size(a,1))
     ldb = max(1,size(b,1))
@@ -3637,10 +3520,10 @@ pure subroutine mfi_cherk(a, c, uplo, trans, alpha, beta)
     character :: local_trans
     character, intent(in), optional :: uplo
     character :: local_uplo
-    complex(wp), intent(in), optional :: alpha
-    complex(wp) :: local_alpha
-    complex(wp), intent(in), optional :: beta
-    complex(wp) :: local_beta
+    real(wp), intent(in), optional :: alpha
+    real(wp) :: local_alpha
+    real(wp), intent(in), optional :: beta
+    real(wp) :: local_beta
     integer :: n, k, lda, ldc
     if (present(trans)) then
         local_trans = trans
@@ -3655,12 +3538,12 @@ pure subroutine mfi_cherk(a, c, uplo, trans, alpha, beta)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     if (present(beta)) then
         local_beta = beta
     else
-        local_beta = 0_wp
+        local_beta = 0.0_wp
     end if
     n = size(c,2)
     if (local_trans == 'N' .or. local_trans == 'n') then
@@ -3680,10 +3563,10 @@ pure subroutine mfi_zherk(a, c, uplo, trans, alpha, beta)
     character :: local_trans
     character, intent(in), optional :: uplo
     character :: local_uplo
-    complex(wp), intent(in), optional :: alpha
-    complex(wp) :: local_alpha
-    complex(wp), intent(in), optional :: beta
-    complex(wp) :: local_beta
+    real(wp), intent(in), optional :: alpha
+    real(wp) :: local_alpha
+    real(wp), intent(in), optional :: beta
+    real(wp) :: local_beta
     integer :: n, k, lda, ldc
     if (present(trans)) then
         local_trans = trans
@@ -3698,12 +3581,12 @@ pure subroutine mfi_zherk(a, c, uplo, trans, alpha, beta)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     if (present(beta)) then
         local_beta = beta
     else
-        local_beta = 0_wp
+        local_beta = 0.0_wp
     end if
     n = size(c,2)
     if (local_trans == 'N' .or. local_trans == 'n') then
@@ -3726,8 +3609,8 @@ pure subroutine mfi_cher2k(a, b, c, uplo, trans, alpha, beta)
     character :: local_uplo
     complex(wp), intent(in), optional :: alpha
     complex(wp) :: local_alpha
-    complex(wp), intent(in), optional :: beta
-    complex(wp) :: local_beta
+    real(wp), intent(in), optional :: beta
+    real(wp) :: local_beta
     integer :: n, k, lda, ldb, ldc
     if (present(trans)) then
         local_trans = trans
@@ -3742,12 +3625,12 @@ pure subroutine mfi_cher2k(a, b, c, uplo, trans, alpha, beta)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     if (present(beta)) then
         local_beta = beta
     else
-        local_beta = 0_wp
+        local_beta = 0.0_wp
     end if
     n = size(c,2)
     if (local_trans == 'N' .or. local_trans == 'n') then
@@ -3771,8 +3654,8 @@ pure subroutine mfi_zher2k(a, b, c, uplo, trans, alpha, beta)
     character :: local_uplo
     complex(wp), intent(in), optional :: alpha
     complex(wp) :: local_alpha
-    complex(wp), intent(in), optional :: beta
-    complex(wp) :: local_beta
+    real(wp), intent(in), optional :: beta
+    real(wp) :: local_beta
     integer :: n, k, lda, ldb, ldc
     if (present(trans)) then
         local_trans = trans
@@ -3787,12 +3670,12 @@ pure subroutine mfi_zher2k(a, b, c, uplo, trans, alpha, beta)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     if (present(beta)) then
         local_beta = beta
     else
-        local_beta = 0_wp
+        local_beta = 0.0_wp
     end if
     n = size(c,2)
     if (local_trans == 'N' .or. local_trans == 'n') then
@@ -3832,12 +3715,12 @@ pure subroutine mfi_ssymm(a, b, c, side, uplo, alpha, beta)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     if (present(beta)) then
         local_beta = beta
     else
-        local_beta = 0_wp
+        local_beta = 0.0_wp
     end if
     lda = max(1,size(a,1))
     ldb = max(1,size(b,1))
@@ -3873,12 +3756,12 @@ pure subroutine mfi_dsymm(a, b, c, side, uplo, alpha, beta)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     if (present(beta)) then
         local_beta = beta
     else
-        local_beta = 0_wp
+        local_beta = 0.0_wp
     end if
     lda = max(1,size(a,1))
     ldb = max(1,size(b,1))
@@ -3913,12 +3796,12 @@ pure subroutine mfi_ssyrk(a, c, uplo, trans, alpha, beta)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     if (present(beta)) then
         local_beta = beta
     else
-        local_beta = 0_wp
+        local_beta = 0.0_wp
     end if
     n = size(c,2)
     if (local_trans == 'N' .or. local_trans == 'n') then
@@ -3956,12 +3839,12 @@ pure subroutine mfi_dsyrk(a, c, uplo, trans, alpha, beta)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     if (present(beta)) then
         local_beta = beta
     else
-        local_beta = 0_wp
+        local_beta = 0.0_wp
     end if
     n = size(c,2)
     if (local_trans == 'N' .or. local_trans == 'n') then
@@ -4000,12 +3883,12 @@ pure subroutine mfi_ssyr2k(a, b, c, uplo, trans, alpha, beta)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     if (present(beta)) then
         local_beta = beta
     else
-        local_beta = 0_wp
+        local_beta = 0.0_wp
     end if
     n = size(c,2)
     if (local_trans == 'N' .or. local_trans == 'n') then
@@ -4045,12 +3928,12 @@ pure subroutine mfi_dsyr2k(a, b, c, uplo, trans, alpha, beta)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     if (present(beta)) then
         local_beta = beta
     else
-        local_beta = 0_wp
+        local_beta = 0.0_wp
     end if
     n = size(c,2)
     if (local_trans == 'N' .or. local_trans == 'n') then
@@ -4101,7 +3984,7 @@ pure subroutine mfi_strmm(a, b, side, uplo, transa, diag, alpha)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     m = size(b,1)
     n = size(b,2)
@@ -4147,7 +4030,7 @@ pure subroutine mfi_dtrmm(a, b, side, uplo, transa, diag, alpha)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     m = size(b,1)
     n = size(b,2)
@@ -4193,7 +4076,7 @@ pure subroutine mfi_ctrmm(a, b, side, uplo, transa, diag, alpha)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     m = size(b,1)
     n = size(b,2)
@@ -4239,7 +4122,7 @@ pure subroutine mfi_ztrmm(a, b, side, uplo, transa, diag, alpha)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     m = size(b,1)
     n = size(b,2)
@@ -4285,7 +4168,7 @@ pure subroutine mfi_strsm(a, b, side, uplo, transa, diag, alpha)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     m = size(b,1)
     n = size(b,2)
@@ -4331,7 +4214,7 @@ pure subroutine mfi_dtrsm(a, b, side, uplo, transa, diag, alpha)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     m = size(b,1)
     n = size(b,2)
@@ -4377,7 +4260,7 @@ pure subroutine mfi_ctrsm(a, b, side, uplo, transa, diag, alpha)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     m = size(b,1)
     n = size(b,2)
@@ -4423,7 +4306,7 @@ pure subroutine mfi_ztrsm(a, b, side, uplo, transa, diag, alpha)
     if (present(alpha)) then
         local_alpha = alpha
     else
-        local_alpha = 1_wp
+        local_alpha = 1.0_wp
     end if
     m = size(b,1)
     n = size(b,2)
@@ -4431,5 +4314,128 @@ pure subroutine mfi_ztrsm(a, b, side, uplo, transa, diag, alpha)
     ldb = max(1,size(b,1))
     call f77_trsm(local_side,local_uplo,local_transa,local_diag,m,n,local_alpha,a,lda,b,ldb)
 end subroutine
+
+! Extensions
+! BLAS level 1 - Utils / Extensions
+pure function mfi_isamax(x, incx)
+    integer, parameter :: wp = REAL32
+    integer :: mfi_isamax
+    real(wp), intent(in) :: x(:)
+    integer, intent(in), optional :: incx
+    integer :: local_incx
+    integer :: n
+    if (present(incx)) then
+        local_incx = incx
+    else
+        local_incx = 1
+    end if
+    n = size(x)
+    mfi_isamax = f77_iamax(n,x,local_incx)
+end function
+pure function mfi_idamax(x, incx)
+    integer, parameter :: wp = REAL64
+    integer :: mfi_idamax
+    real(wp), intent(in) :: x(:)
+    integer, intent(in), optional :: incx
+    integer :: local_incx
+    integer :: n
+    if (present(incx)) then
+        local_incx = incx
+    else
+        local_incx = 1
+    end if
+    n = size(x)
+    mfi_idamax = f77_iamax(n,x,local_incx)
+end function
+pure function mfi_icamax(x, incx)
+    integer, parameter :: wp = REAL32
+    integer :: mfi_icamax
+    complex(wp), intent(in) :: x(:)
+    integer, intent(in), optional :: incx
+    integer :: local_incx
+    integer :: n
+    if (present(incx)) then
+        local_incx = incx
+    else
+        local_incx = 1
+    end if
+    n = size(x)
+    mfi_icamax = f77_iamax(n,x,local_incx)
+end function
+pure function mfi_izamax(x, incx)
+    integer, parameter :: wp = REAL64
+    integer :: mfi_izamax
+    complex(wp), intent(in) :: x(:)
+    integer, intent(in), optional :: incx
+    integer :: local_incx
+    integer :: n
+    if (present(incx)) then
+        local_incx = incx
+    else
+        local_incx = 1
+    end if
+    n = size(x)
+    mfi_izamax = f77_iamax(n,x,local_incx)
+end function
+pure function mfi_isamin(x, incx)
+    integer, parameter :: wp = REAL32
+    integer :: mfi_isamin
+    real(wp), intent(in) :: x(:)
+    integer, intent(in), optional :: incx
+    integer :: local_incx
+    integer :: n
+    if (present(incx)) then
+        local_incx = incx
+    else
+        local_incx = 1
+    end if
+    n = size(x)
+    mfi_isamin = f77_iamin(n,x,local_incx)
+end function
+pure function mfi_idamin(x, incx)
+    integer, parameter :: wp = REAL64
+    integer :: mfi_idamin
+    real(wp), intent(in) :: x(:)
+    integer, intent(in), optional :: incx
+    integer :: local_incx
+    integer :: n
+    if (present(incx)) then
+        local_incx = incx
+    else
+        local_incx = 1
+    end if
+    n = size(x)
+    mfi_idamin = f77_iamin(n,x,local_incx)
+end function
+pure function mfi_icamin(x, incx)
+    integer, parameter :: wp = REAL32
+    integer :: mfi_icamin
+    complex(wp), intent(in) :: x(:)
+    integer, intent(in), optional :: incx
+    integer :: local_incx
+    integer :: n
+    if (present(incx)) then
+        local_incx = incx
+    else
+        local_incx = 1
+    end if
+    n = size(x)
+    mfi_icamin = f77_iamin(n,x,local_incx)
+end function
+pure function mfi_izamin(x, incx)
+    integer, parameter :: wp = REAL64
+    integer :: mfi_izamin
+    complex(wp), intent(in) :: x(:)
+    integer, intent(in), optional :: incx
+    integer :: local_incx
+    integer :: n
+    if (present(incx)) then
+        local_incx = incx
+    else
+        local_incx = 1
+    end if
+    n = size(x)
+    mfi_izamin = f77_iamin(n,x,local_incx)
+end function
 
 end module

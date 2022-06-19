@@ -1,5 +1,6 @@
 #:mute
 #:include "common.fpp"
+
 #:def asum(NAME,TYPE,KIND)
 pure function ${NAME}$(n, x, incx)
     import :: ${KIND}$
@@ -58,16 +59,6 @@ pure subroutine ${NAME}$(d1, d2, x1, y1, param)
 @:args(${TYPE}$, out,   param(5))
 @:args(${TYPE}$, inout, d1, d2, x1)
 end subroutine
-#:enddef
-
-#:def iamin_iamax(NAME,TYPE,KIND)
-pure function ${NAME}$(n, x, incx)
-    import :: ${KIND}$
-@:parameter(integer, wp=${KIND}$)
-    integer :: ${NAME}$
-@:args(${TYPE}$, in, x(*))
-@:args(integer,  in, n, incx)
-end function
 #:enddef
 
 #:def gbmv(NAME,TYPE,KIND)
@@ -129,7 +120,19 @@ pure subroutine ${NAME}$(uplo, n, alpha, a, lda, x, incx, beta, y, incy)
 end subroutine
 #:enddef
 
-#:def her_syr(NAME,TYPE,KIND)
+#:def her(NAME,TYPE,KIND)
+pure subroutine ${NAME}$(uplo, n, alpha, x, incx, a, lda)
+    import :: ${KIND}$
+@:parameter(integer, wp=${KIND}$)
+@:args(${TYPE}$,  in,    x(*))
+@:args(${TYPE}$,  inout, a(lda,*))
+@:args(character, in,    uplo)
+@:args(real(wp),  in,    alpha)
+@:args(integer,   in,    n, lda, incx)
+end subroutine
+#:enddef
+
+#:def syr(NAME,TYPE,KIND)
 pure subroutine ${NAME}$(uplo, n, alpha, x, incx, a, lda)
     import :: ${KIND}$
 @:parameter(integer, wp=${KIND}$)
@@ -165,7 +168,19 @@ pure subroutine ${NAME}$(uplo, n, alpha, ap, x, incx, beta, y, incy)
 end subroutine
 #:enddef
 
-#:def hpr_spr(NAME,TYPE,KIND)
+#:def hpr(NAME,TYPE,KIND)
+pure subroutine ${NAME}$(uplo, n, alpha, x, incx, ap)
+    import :: ${KIND}$
+@:parameter(integer, wp=${KIND}$)
+@:args(${TYPE}$,  in,    x(*))
+@:args(${TYPE}$,  inout, ap(*))
+@:args(character, in,    uplo)
+@:args(real(wp),  in,    alpha)
+@:args(integer,   in,    n, incx)
+end subroutine
+#:enddef
+
+#:def spr(NAME,TYPE,KIND)
 pure subroutine ${NAME}$(uplo, n, alpha, x, incx, ap)
     import :: ${KIND}$
 @:parameter(integer, wp=${KIND}$)
@@ -246,7 +261,19 @@ pure subroutine ${NAME}$(side, uplo, m, n, alpha, a, lda, b, ldb, beta, c, ldc)
 end subroutine
 #:enddef
 
-#:def herk_syrk(NAME,TYPE,KIND)
+#:def herk(NAME,TYPE,KIND)
+pure subroutine ${NAME}$(uplo, trans, n, k, alpha, a, lda, beta, c, ldc)
+    import :: ${KIND}$
+@:parameter(integer, wp=${KIND}$)
+@:args(${TYPE}$,  in,    a(lda,*))
+@:args(${TYPE}$,  inout, c(ldc,*))
+@:args(character, in,    trans, uplo)
+@:args(real(wp),  in,    alpha, beta)
+@:args(integer,   in,    n, k, lda, ldc)
+end subroutine
+#:enddef
+
+#:def syrk(NAME,TYPE,KIND)
 pure subroutine ${NAME}$(uplo, trans, n, k, alpha, a, lda, beta, c, ldc)
     import :: ${KIND}$
 @:parameter(integer, wp=${KIND}$)
@@ -258,7 +285,21 @@ pure subroutine ${NAME}$(uplo, trans, n, k, alpha, a, lda, beta, c, ldc)
 end subroutine
 #:enddef
 
-#:def her2k_syr2k(NAME,TYPE,KIND)
+#:def her2k(NAME,TYPE,KIND)
+pure subroutine ${NAME}$(uplo, trans, n, k, alpha, a, lda, b, ldb, beta, c, ldc)
+    import :: ${KIND}$
+@:parameter(integer, wp=${KIND}$)
+@:args(${TYPE}$,  in,    a(lda,*))
+@:args(${TYPE}$,  in,    b(ldb,*))
+@:args(${TYPE}$,  inout, c(ldc,*))
+@:args(character, in,    trans, uplo)
+@:args(${TYPE}$,  in,    alpha)
+@:args(real(wp),  in,    beta)
+@:args(integer,   in,    n, k, lda, ldb, ldc)
+end subroutine
+#:enddef
+
+#:def syr2k(NAME,TYPE,KIND)
 pure subroutine ${NAME}$(uplo, trans, n, k, alpha, a, lda, b, ldb, beta, c, ldc)
     import :: ${KIND}$
 @:parameter(integer, wp=${KIND}$)
@@ -282,6 +323,37 @@ pure subroutine ${NAME}$(side, uplo, transa, diag, m, n, alpha, a, lda, b, ldb)
 @:args(integer,   in,    m, n, lda, ldb)
 end subroutine
 #:enddef
+
+! BLAS Level 1 - Extensions
+#:def iamax_iamin(NAME,TYPE,KIND)
+pure function ${NAME}$(n, x, incx)
+    import :: ${KIND}$
+@:parameter(integer, wp=${KIND}$)
+    integer :: ${NAME}$
+@:args(${TYPE}$, in, x(*))
+@:args(integer,  in, n, incx)
+end function
+#:enddef
+
+#:def iamin_stub(NAME,TYPE,KIND)
+pure function ${NAME}$(n, x, incx)
+@:parameter(integer, wp=${KIND}$)
+    integer :: ${NAME}$
+@:args(${TYPE}$, in, x(*))
+@:args(integer,  in, n, incx)
+    !If either n or incx are not positive, the routine returns 0.
+    if (n <= 0 .or. incx <= 0) then
+        ${NAME}$ = 0
+        return
+    end if
+#:if TYPE is COMPLEX_TYPE
+    ${NAME}$ = minloc(abs(real(x(1:n:incx))) + abs(aimag(x(1:n:incx))),dim=1)
+#:else
+    ${NAME}$ = minloc(x(1:n:incx),dim=1)
+#:endif
+end function
+#:enddef
+
 #:endmute
 module f77_blas
 use iso_fortran_env
@@ -308,8 +380,6 @@ $:f77_interface('?rotm',  REAL_TYPES,    rotm)
 $:f77_interface('?rotmg', REAL_TYPES,    rotmg)
 !$:f77_interface('?scal')
 $:f77_interface('?swap',  DEFAULT_TYPES, copy_swap)
-$:f77_interface('i?amin', DEFAULT_TYPES, iamin_iamax)
-$:f77_interface('i?amax', DEFAULT_TYPES, iamin_iamax)
 
 ! BLAS level 2
 $:f77_interface('?gbmv',  DEFAULT_TYPES, gbmv)
@@ -319,17 +389,17 @@ $:f77_interface('?gerc',  COMPLEX_TYPES, ger_gerc_geru)
 $:f77_interface('?geru',  COMPLEX_TYPES, ger_gerc_geru)
 $:f77_interface('?hbmv',  COMPLEX_TYPES, hbmv_sbmv)
 $:f77_interface('?hemv',  COMPLEX_TYPES, hemv_symv)
-$:f77_interface('?her',   COMPLEX_TYPES, her_syr)
+$:f77_interface('?her',   COMPLEX_TYPES, her)
 $:f77_interface('?her2',  COMPLEX_TYPES, her_syr2)
 $:f77_interface('?hpmv',  COMPLEX_TYPES, hpmv_spmv)
-$:f77_interface('?hpr',   COMPLEX_TYPES, hpr_spr)
+$:f77_interface('?hpr',   COMPLEX_TYPES, hpr)
 $:f77_interface('?hpr2',  COMPLEX_TYPES, hpr_spr2)
 $:f77_interface('?sbmv',  REAL_TYPES,    hbmv_sbmv)
 $:f77_interface('?spmv',  REAL_TYPES,    hpmv_spmv)
-$:f77_interface('?spr',   REAL_TYPES,    hpr_spr)
+$:f77_interface('?spr',   REAL_TYPES,    spr)
 $:f77_interface('?spr2',  REAL_TYPES,    hpr_spr2)
 $:f77_interface('?symv',  REAL_TYPES,    hemv_symv)
-$:f77_interface('?syr',   REAL_TYPES,    her_syr)
+$:f77_interface('?syr',   REAL_TYPES,    syr)
 $:f77_interface('?syr2',  REAL_TYPES,    her_syr2)
 $:f77_interface('?tbmv',  DEFAULT_TYPES, tbmv_tbsv)
 $:f77_interface('?tbsv',  DEFAULT_TYPES, tbmv_tbsv)
@@ -341,13 +411,27 @@ $:f77_interface('?trsv',  DEFAULT_TYPES, trmv_trsv)
 ! BLAS level 3
 $:f77_interface('?gemm',  DEFAULT_TYPES, gemm)
 $:f77_interface('?hemm',  COMPLEX_TYPES, hemm_symm)
-$:f77_interface('?herk',  COMPLEX_TYPES, herk_syrk)
-$:f77_interface('?her2k', COMPLEX_TYPES, her2k_syr2k)
+$:f77_interface('?herk',  COMPLEX_TYPES, herk)
+$:f77_interface('?her2k', COMPLEX_TYPES, her2k)
 $:f77_interface('?symm',  REAL_TYPES,    hemm_symm)
-$:f77_interface('?syrk',  REAL_TYPES,    herk_syrk)
-$:f77_interface('?syr2k', REAL_TYPES,    her2k_syr2k)
+$:f77_interface('?syrk',  REAL_TYPES,    syrk)
+$:f77_interface('?syr2k', REAL_TYPES,    syr2k)
 $:f77_interface('?trmm',  DEFAULT_TYPES, trmm_trsm)
 $:f77_interface('?trsm',  DEFAULT_TYPES, trmm_trsm)
 
+! Extensions
+! BLAS Level 1 - Utils / Extensions
+$:f77_interface('i?amax', DEFAULT_TYPES, iamax_iamin)
+#:if defined('MFI_EXTENSIONS')
+  #:if defined('MFI_LINK_EXTERNAL')
+! Link with a external source
+$:f77_interface('i?amin', DEFAULT_TYPES, iamax_iamin)
+  #:else
+! Implement the blas extensions in
+$:f77_interface_internal('i?amin', DEFAULT_TYPES)
+contains
+$:f77_implement('i?amin', DEFAULT_TYPES, iamin_stub)
+  #:endif
+#:endif
 end module
 

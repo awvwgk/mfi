@@ -220,74 +220,6 @@ pure subroutine zswap(n, x, incx, y, incy)
     integer, intent(in) :: incy
 end subroutine
 end interface
-interface f77_iamin
-pure function isamin(n, x, incx)
-    import :: REAL32
-    integer, parameter :: wp = REAL32
-    integer :: isamin
-    real(wp), intent(in) :: x(*)
-    integer, intent(in) :: n
-    integer, intent(in) :: incx
-end function
-pure function idamin(n, x, incx)
-    import :: REAL64
-    integer, parameter :: wp = REAL64
-    integer :: idamin
-    real(wp), intent(in) :: x(*)
-    integer, intent(in) :: n
-    integer, intent(in) :: incx
-end function
-pure function icamin(n, x, incx)
-    import :: REAL32
-    integer, parameter :: wp = REAL32
-    integer :: icamin
-    complex(wp), intent(in) :: x(*)
-    integer, intent(in) :: n
-    integer, intent(in) :: incx
-end function
-pure function izamin(n, x, incx)
-    import :: REAL64
-    integer, parameter :: wp = REAL64
-    integer :: izamin
-    complex(wp), intent(in) :: x(*)
-    integer, intent(in) :: n
-    integer, intent(in) :: incx
-end function
-end interface
-interface f77_iamax
-pure function isamax(n, x, incx)
-    import :: REAL32
-    integer, parameter :: wp = REAL32
-    integer :: isamax
-    real(wp), intent(in) :: x(*)
-    integer, intent(in) :: n
-    integer, intent(in) :: incx
-end function
-pure function idamax(n, x, incx)
-    import :: REAL64
-    integer, parameter :: wp = REAL64
-    integer :: idamax
-    real(wp), intent(in) :: x(*)
-    integer, intent(in) :: n
-    integer, intent(in) :: incx
-end function
-pure function icamax(n, x, incx)
-    import :: REAL32
-    integer, parameter :: wp = REAL32
-    integer :: icamax
-    complex(wp), intent(in) :: x(*)
-    integer, intent(in) :: n
-    integer, intent(in) :: incx
-end function
-pure function izamax(n, x, incx)
-    import :: REAL64
-    integer, parameter :: wp = REAL64
-    integer :: izamax
-    complex(wp), intent(in) :: x(*)
-    integer, intent(in) :: n
-    integer, intent(in) :: incx
-end function
-end interface
 
 ! BLAS level 2
 interface f77_gbmv
@@ -575,7 +507,7 @@ pure subroutine cher(uplo, n, alpha, x, incx, a, lda)
     complex(wp), intent(in) :: x(*)
     complex(wp), intent(inout) :: a(lda,*)
     character, intent(in) :: uplo
-    complex(wp), intent(in) :: alpha
+    real(wp), intent(in) :: alpha
     integer, intent(in) :: n
     integer, intent(in) :: lda
     integer, intent(in) :: incx
@@ -586,7 +518,7 @@ pure subroutine zher(uplo, n, alpha, x, incx, a, lda)
     complex(wp), intent(in) :: x(*)
     complex(wp), intent(inout) :: a(lda,*)
     character, intent(in) :: uplo
-    complex(wp), intent(in) :: alpha
+    real(wp), intent(in) :: alpha
     integer, intent(in) :: n
     integer, intent(in) :: lda
     integer, intent(in) :: incx
@@ -655,7 +587,7 @@ pure subroutine chpr(uplo, n, alpha, x, incx, ap)
     complex(wp), intent(in) :: x(*)
     complex(wp), intent(inout) :: ap(*)
     character, intent(in) :: uplo
-    complex(wp), intent(in) :: alpha
+    real(wp), intent(in) :: alpha
     integer, intent(in) :: n
     integer, intent(in) :: incx
 end subroutine
@@ -665,7 +597,7 @@ pure subroutine zhpr(uplo, n, alpha, x, incx, ap)
     complex(wp), intent(in) :: x(*)
     complex(wp), intent(inout) :: ap(*)
     character, intent(in) :: uplo
-    complex(wp), intent(in) :: alpha
+    real(wp), intent(in) :: alpha
     integer, intent(in) :: n
     integer, intent(in) :: incx
 end subroutine
@@ -1300,8 +1232,8 @@ pure subroutine cherk(uplo, trans, n, k, alpha, a, lda, beta, c, ldc)
     complex(wp), intent(inout) :: c(ldc,*)
     character, intent(in) :: trans
     character, intent(in) :: uplo
-    complex(wp), intent(in) :: alpha
-    complex(wp), intent(in) :: beta
+    real(wp), intent(in) :: alpha
+    real(wp), intent(in) :: beta
     integer, intent(in) :: n
     integer, intent(in) :: k
     integer, intent(in) :: lda
@@ -1314,8 +1246,8 @@ pure subroutine zherk(uplo, trans, n, k, alpha, a, lda, beta, c, ldc)
     complex(wp), intent(inout) :: c(ldc,*)
     character, intent(in) :: trans
     character, intent(in) :: uplo
-    complex(wp), intent(in) :: alpha
-    complex(wp), intent(in) :: beta
+    real(wp), intent(in) :: alpha
+    real(wp), intent(in) :: beta
     integer, intent(in) :: n
     integer, intent(in) :: k
     integer, intent(in) :: lda
@@ -1332,7 +1264,7 @@ pure subroutine cher2k(uplo, trans, n, k, alpha, a, lda, b, ldb, beta, c, ldc)
     character, intent(in) :: trans
     character, intent(in) :: uplo
     complex(wp), intent(in) :: alpha
-    complex(wp), intent(in) :: beta
+    real(wp), intent(in) :: beta
     integer, intent(in) :: n
     integer, intent(in) :: k
     integer, intent(in) :: lda
@@ -1348,7 +1280,7 @@ pure subroutine zher2k(uplo, trans, n, k, alpha, a, lda, b, ldb, beta, c, ldc)
     character, intent(in) :: trans
     character, intent(in) :: uplo
     complex(wp), intent(in) :: alpha
-    complex(wp), intent(in) :: beta
+    real(wp), intent(in) :: beta
     integer, intent(in) :: n
     integer, intent(in) :: k
     integer, intent(in) :: lda
@@ -1579,5 +1511,101 @@ pure subroutine ztrsm(side, uplo, transa, diag, m, n, alpha, a, lda, b, ldb)
 end subroutine
 end interface
 
+! Extensions
+! BLAS Level 1 - Utils / Extensions
+interface f77_iamax
+pure function isamax(n, x, incx)
+    import :: REAL32
+    integer, parameter :: wp = REAL32
+    integer :: isamax
+    real(wp), intent(in) :: x(*)
+    integer, intent(in) :: n
+    integer, intent(in) :: incx
+end function
+pure function idamax(n, x, incx)
+    import :: REAL64
+    integer, parameter :: wp = REAL64
+    integer :: idamax
+    real(wp), intent(in) :: x(*)
+    integer, intent(in) :: n
+    integer, intent(in) :: incx
+end function
+pure function icamax(n, x, incx)
+    import :: REAL32
+    integer, parameter :: wp = REAL32
+    integer :: icamax
+    complex(wp), intent(in) :: x(*)
+    integer, intent(in) :: n
+    integer, intent(in) :: incx
+end function
+pure function izamax(n, x, incx)
+    import :: REAL64
+    integer, parameter :: wp = REAL64
+    integer :: izamax
+    complex(wp), intent(in) :: x(*)
+    integer, intent(in) :: n
+    integer, intent(in) :: incx
+end function
+end interface
+! Implement the blas extensions in
+interface f77_iamin
+    module procedure isamin
+    module procedure idamin
+    module procedure icamin
+    module procedure izamin
+end interface
+contains
+pure function isamin(n, x, incx)
+    integer, parameter :: wp = REAL32
+    integer :: isamin
+    real(wp), intent(in) :: x(*)
+    integer, intent(in) :: n
+    integer, intent(in) :: incx
+    !If either n or incx are not positive, the routine returns 0.
+    if (n <= 0 .or. incx <= 0) then
+        isamin = 0
+        return
+    end if
+    isamin = minloc(x(1:n:incx),dim=1)
+end function
+pure function idamin(n, x, incx)
+    integer, parameter :: wp = REAL64
+    integer :: idamin
+    real(wp), intent(in) :: x(*)
+    integer, intent(in) :: n
+    integer, intent(in) :: incx
+    !If either n or incx are not positive, the routine returns 0.
+    if (n <= 0 .or. incx <= 0) then
+        idamin = 0
+        return
+    end if
+    idamin = minloc(x(1:n:incx),dim=1)
+end function
+pure function icamin(n, x, incx)
+    integer, parameter :: wp = REAL32
+    integer :: icamin
+    complex(wp), intent(in) :: x(*)
+    integer, intent(in) :: n
+    integer, intent(in) :: incx
+    !If either n or incx are not positive, the routine returns 0.
+    if (n <= 0 .or. incx <= 0) then
+        icamin = 0
+        return
+    end if
+    icamin = minloc(abs(real(x(1:n:incx))) + abs(aimag(x(1:n:incx))),dim=1)
+end function
+pure function izamin(n, x, incx)
+    integer, parameter :: wp = REAL64
+    integer :: izamin
+    complex(wp), intent(in) :: x(*)
+    integer, intent(in) :: n
+    integer, intent(in) :: incx
+    !If either n or incx are not positive, the routine returns 0.
+    if (n <= 0 .or. incx <= 0) then
+        izamin = 0
+        return
+    end if
+    izamin = minloc(abs(real(x(1:n:incx))) + abs(aimag(x(1:n:incx))),dim=1)
+end function
 end module
 
