@@ -1,6 +1,18 @@
 #:mute
 #:include "common.fpp"
-#:def axpy(MFI_NAME,F77_NAME,TYPE,KIND)
+
+#:def lamch(MFI_NAME,F77_NAME,TYPE,KIND,ORIGINAL_NAME)
+pure function ${MFI_NAME}$(cmach, kind) result(res)
+@:parameter(integer, wp=${KIND}$)
+@:args(character, in, cmach)
+@:args(${TYPE}$, in, kind)
+    !! Just a kind placeholder
+    ${TYPE}$ :: res
+    res = ${ORIGINAL_NAME}$(cmach)
+end function
+#:enddef
+
+#:def axpy(MFI_NAME,F77_NAME,TYPE,KIND,ORIGINAL_NAME)
 pure subroutine ${MFI_NAME}$(x, y, a, incx, incy)
 @:parameter(integer, wp=${KIND}$)
 @:args(${TYPE}$, in,    x(:))
@@ -14,7 +26,7 @@ pure subroutine ${MFI_NAME}$(x, y, a, incx, incy)
 end subroutine
 #:enddef
 
-#:def copy_swap(MFI_NAME,F77_NAME,TYPE,KIND)
+#:def copy_swap(MFI_NAME,F77_NAME,TYPE,KIND,ORIGINAL_NAME)
 pure subroutine ${MFI_NAME}$(x, y, incx, incy)
 @:parameter(integer, wp=${KIND}$)
 @:args(${TYPE}$, in,    x(:))
@@ -27,7 +39,7 @@ pure subroutine ${MFI_NAME}$(x, y, incx, incy)
 end subroutine
 #:enddef
 
-#:def dot_product(MFI_NAME,F77_NAME,TYPE,KIND)
+#:def dot_product(MFI_NAME,F77_NAME,TYPE,KIND,ORIGINAL_NAME)
 pure function ${MFI_NAME}$(x, y, incx, incy)
 @:parameter(integer, wp=${KIND}$)
     ${TYPE}$ :: ${MFI_NAME}$
@@ -40,7 +52,7 @@ pure function ${MFI_NAME}$(x, y, incx, incy)
 end function
 #:enddef
 
-#:def rotm(MFI_NAME,F77_NAME,TYPE,KIND)
+#:def rotm(MFI_NAME,F77_NAME,TYPE,KIND,ORIGINAL_NAME)
 pure subroutine ${MFI_NAME}$(x, y, param, incx, incy)
 @:parameter(integer, wp=${KIND}$)
 @:args(${TYPE}$, inout, x(:), y(:))
@@ -53,7 +65,7 @@ pure subroutine ${MFI_NAME}$(x, y, param, incx, incy)
 end subroutine
 #:enddef
 
-#:def iamin_iamax(MFI_NAME,F77_NAME,TYPE,KIND)
+#:def iamin_iamax(MFI_NAME,F77_NAME,TYPE,KIND,ORIGINAL_NAME)
 pure function ${MFI_NAME}$(x, incx)
 @:parameter(integer, wp=${KIND}$)
     integer :: ${MFI_NAME}$
@@ -66,7 +78,7 @@ pure function ${MFI_NAME}$(x, incx)
 end function
 #:enddef
 
-#:def gbmv(MFI_NAME,F77_NAME,TYPE,KIND)
+#:def gbmv(MFI_NAME,F77_NAME,TYPE,KIND,ORIGINAL_NAME)
 pure subroutine ${MFI_NAME}$(a, x, y, kl, m, alpha, beta, trans, incx, incy)
 @:parameter(integer, wp=${KIND}$)
 @:args(${TYPE}$, in,    a(:,:), x(:))
@@ -83,7 +95,7 @@ pure subroutine ${MFI_NAME}$(a, x, y, kl, m, alpha, beta, trans, incx, incy)
 end subroutine
 #:enddef
 
-#:def gemv(MFI_NAME,F77_NAME,TYPE,KIND)
+#:def gemv(MFI_NAME,F77_NAME,TYPE,KIND,ORIGINAL_NAME)
 pure subroutine ${MFI_NAME}$(a, x, y, trans, alpha, beta, incx, incy)
 @:parameter(integer, wp=${KIND}$)
 @:args(${TYPE}$, in,    a(:,:), x(:))
@@ -100,7 +112,7 @@ pure subroutine ${MFI_NAME}$(a, x, y, trans, alpha, beta, incx, incy)
 end subroutine
 #:enddef
 
-#:def ger_gerc_geru(MFI_NAME,F77_NAME,TYPE,KIND)
+#:def ger_gerc_geru(MFI_NAME,F77_NAME,TYPE,KIND,ORIGINAL_NAME)
 pure subroutine ${MFI_NAME}$(a, x, y, alpha, incx, incy)
 @:parameter(integer, wp=${KIND}$)
 @:args(${TYPE}$, in,    x(:), y(:))
@@ -116,7 +128,7 @@ pure subroutine ${MFI_NAME}$(a, x, y, alpha, incx, incy)
 end subroutine
 #:enddef
 
-#:def hbmv_sbmv(MFI_NAME,F77_NAME,TYPE,KIND)
+#:def hbmv_sbmv(MFI_NAME,F77_NAME,TYPE,KIND,ORIGINAL_NAME)
 pure subroutine ${MFI_NAME}$(a, x, y, uplo, alpha, beta, incx, incy)
 @:parameter(integer, wp=${KIND}$)
 @:args(${TYPE}$, in, x(:), a(:,:))
@@ -133,7 +145,7 @@ pure subroutine ${MFI_NAME}$(a, x, y, uplo, alpha, beta, incx, incy)
 end subroutine
 #:enddef
 
-#:def hemv_symv(MFI_NAME,F77_NAME,TYPE,KIND)
+#:def hemv_symv(MFI_NAME,F77_NAME,TYPE,KIND,ORIGINAL_NAME)
 pure subroutine ${MFI_NAME}$(a, x, y, uplo, alpha, beta, incx, incy)
 @:parameter(integer, wp=${KIND}$)
 @:args(${TYPE}$, in, x(:), a(:,:))
@@ -149,7 +161,7 @@ pure subroutine ${MFI_NAME}$(a, x, y, uplo, alpha, beta, incx, incy)
 end subroutine
 #:enddef
 
-#:def her(MFI_NAME,F77_NAME,TYPE,KIND)
+#:def her(MFI_NAME,F77_NAME,TYPE,KIND,ORIGINAL_NAME)
 pure subroutine ${MFI_NAME}$(a, x, uplo, alpha, incx)
 @:parameter(integer, wp=${KIND}$)
 @:args(${TYPE}$, in,    x(:))
@@ -165,7 +177,7 @@ pure subroutine ${MFI_NAME}$(a, x, uplo, alpha, incx)
 end subroutine
 #:enddef
 
-#:def syr(MFI_NAME,F77_NAME,TYPE,KIND)
+#:def syr(MFI_NAME,F77_NAME,TYPE,KIND,ORIGINAL_NAME)
 pure subroutine ${MFI_NAME}$(a, x, uplo, alpha, incx)
 @:parameter(integer, wp=${KIND}$)
 @:args(${TYPE}$, in,    x(:))
@@ -181,7 +193,7 @@ pure subroutine ${MFI_NAME}$(a, x, uplo, alpha, incx)
 end subroutine
 #:enddef
 
-#:def her_syr2(MFI_NAME,F77_NAME,TYPE,KIND)
+#:def her_syr2(MFI_NAME,F77_NAME,TYPE,KIND,ORIGINAL_NAME)
 pure subroutine ${MFI_NAME}$(a, x, y, uplo, alpha, incx, incy)
 @:parameter(integer, wp=${KIND}$)
 @:args(${TYPE}$, in,    x(:), y(:))
@@ -197,7 +209,7 @@ pure subroutine ${MFI_NAME}$(a, x, y, uplo, alpha, incx, incy)
 end subroutine
 #:enddef
 
-#:def hpmv_spmv(MFI_NAME,F77_NAME,TYPE,KIND)
+#:def hpmv_spmv(MFI_NAME,F77_NAME,TYPE,KIND,ORIGINAL_NAME)
 pure subroutine ${MFI_NAME}$(ap, x, y, uplo, alpha, beta, incx, incy)
 @:parameter(integer, wp=${KIND}$)
 @:args(${TYPE}$, in,    x(:), ap(:))
@@ -212,7 +224,7 @@ pure subroutine ${MFI_NAME}$(ap, x, y, uplo, alpha, beta, incx, incy)
 end subroutine
 #:enddef
 
-#:def hpr(MFI_NAME,F77_NAME,TYPE,KIND)
+#:def hpr(MFI_NAME,F77_NAME,TYPE,KIND,ORIGINAL_NAME)
 pure subroutine ${MFI_NAME}$(ap, x, uplo, alpha, incx)
 @:parameter(integer, wp=${KIND}$)
 @:args(${TYPE}$, in,    x(:))
@@ -227,7 +239,7 @@ pure subroutine ${MFI_NAME}$(ap, x, uplo, alpha, incx)
 end subroutine
 #:enddef
 
-#:def spr(MFI_NAME,F77_NAME,TYPE,KIND)
+#:def spr(MFI_NAME,F77_NAME,TYPE,KIND,ORIGINAL_NAME)
 pure subroutine ${MFI_NAME}$(ap, x, uplo, alpha, incx)
 @:parameter(integer, wp=${KIND}$)
 @:args(${TYPE}$, in,    x(:))
@@ -242,7 +254,7 @@ pure subroutine ${MFI_NAME}$(ap, x, uplo, alpha, incx)
 end subroutine
 #:enddef
 
-#:def hpr_spr2(MFI_NAME,F77_NAME,TYPE,KIND)
+#:def hpr_spr2(MFI_NAME,F77_NAME,TYPE,KIND,ORIGINAL_NAME)
 pure subroutine ${MFI_NAME}$(ap, x, y, uplo, alpha, incx, incy)
 @:parameter(integer, wp=${KIND}$)
 @:args(${TYPE}$, in,    x(:), y(:))
@@ -257,7 +269,7 @@ pure subroutine ${MFI_NAME}$(ap, x, y, uplo, alpha, incx, incy)
 end subroutine
 #:enddef
 
-#:def tbmv_tbsv(MFI_NAME,F77_NAME,TYPE,KIND)
+#:def tbmv_tbsv(MFI_NAME,F77_NAME,TYPE,KIND,ORIGINAL_NAME)
 pure subroutine ${MFI_NAME}$(a, x, uplo, trans, diag, incx)
 @:parameter(integer, wp=${KIND}$)
 @:args(${TYPE}$, in, a(:,:))
@@ -273,7 +285,7 @@ pure subroutine ${MFI_NAME}$(a, x, uplo, trans, diag, incx)
 end subroutine
 #:enddef
 
-#:def tpmv_tpsv(MFI_NAME,F77_NAME,TYPE,KIND)
+#:def tpmv_tpsv(MFI_NAME,F77_NAME,TYPE,KIND,ORIGINAL_NAME)
 pure subroutine ${MFI_NAME}$(ap, x, uplo, trans, diag, incx)
 @:parameter(integer, wp=${KIND}$)
 @:args(${TYPE}$, in,    ap(:))
@@ -287,7 +299,7 @@ pure subroutine ${MFI_NAME}$(ap, x, uplo, trans, diag, incx)
 end subroutine
 #:enddef
 
-#:def trmv_trsv(MFI_NAME,F77_NAME,TYPE,KIND)
+#:def trmv_trsv(MFI_NAME,F77_NAME,TYPE,KIND,ORIGINAL_NAME)
 pure subroutine ${MFI_NAME}$(a, x, uplo, trans, diag, incx)
 @:parameter(integer, wp=${KIND}$)
 @:args(${TYPE}$, in, a(:,:))
@@ -302,7 +314,7 @@ pure subroutine ${MFI_NAME}$(a, x, uplo, trans, diag, incx)
 end subroutine
 #:enddef
 
-#:def gemm(MFI_NAME,F77_NAME,TYPE,KIND)
+#:def gemm(MFI_NAME,F77_NAME,TYPE,KIND,ORIGINAL_NAME)
 pure subroutine ${MFI_NAME}$(a, b, c, transa, transb, alpha, beta)
 @:parameter(integer, wp=${KIND}$)
 @:args(${TYPE}$, in,    a(:,:), b(:,:))
@@ -325,7 +337,7 @@ pure subroutine ${MFI_NAME}$(a, b, c, transa, transb, alpha, beta)
 end subroutine
 #:enddef
 
-#:def hemm_symm(MFI_NAME,F77_NAME,TYPE,KIND)
+#:def hemm_symm(MFI_NAME,F77_NAME,TYPE,KIND,ORIGINAL_NAME)
 pure subroutine ${MFI_NAME}$(a, b, c, side, uplo, alpha, beta)
 @:parameter(integer, wp=${KIND}$)
 @:args(${TYPE}$, in,    a(:,:), b(:,:))
@@ -343,7 +355,7 @@ pure subroutine ${MFI_NAME}$(a, b, c, side, uplo, alpha, beta)
 end subroutine
 #:enddef
 
-#:def herk(MFI_NAME,F77_NAME,TYPE,KIND)
+#:def herk(MFI_NAME,F77_NAME,TYPE,KIND,ORIGINAL_NAME)
 pure subroutine ${MFI_NAME}$(a, c, uplo, trans, alpha, beta)
 @:parameter(integer, wp=${KIND}$)
 @:args(${TYPE}$, in,    a(:,:))
@@ -364,7 +376,7 @@ pure subroutine ${MFI_NAME}$(a, c, uplo, trans, alpha, beta)
 end subroutine
 #:enddef
 
-#:def syrk(MFI_NAME,F77_NAME,TYPE,KIND)
+#:def syrk(MFI_NAME,F77_NAME,TYPE,KIND,ORIGINAL_NAME)
 pure subroutine ${MFI_NAME}$(a, c, uplo, trans, alpha, beta)
 @:parameter(integer, wp=${KIND}$)
 @:args(${TYPE}$, in,    a(:,:))
@@ -385,7 +397,7 @@ pure subroutine ${MFI_NAME}$(a, c, uplo, trans, alpha, beta)
 end subroutine
 #:enddef
 
-#:def her2k(MFI_NAME,F77_NAME,TYPE,KIND)
+#:def her2k(MFI_NAME,F77_NAME,TYPE,KIND,ORIGINAL_NAME)
 pure subroutine ${MFI_NAME}$(a, b, c, uplo, trans, alpha, beta)
 @:parameter(integer, wp=${KIND}$)
 @:args(${TYPE}$, in,    a(:,:))
@@ -409,7 +421,7 @@ pure subroutine ${MFI_NAME}$(a, b, c, uplo, trans, alpha, beta)
 end subroutine
 #:enddef
 
-#:def syr2k(MFI_NAME,F77_NAME,TYPE,KIND)
+#:def syr2k(MFI_NAME,F77_NAME,TYPE,KIND,ORIGINAL_NAME)
 pure subroutine ${MFI_NAME}$(a, b, c, uplo, trans, alpha, beta)
 @:parameter(integer, wp=${KIND}$)
 @:args(${TYPE}$, in,    a(:,:))
@@ -432,7 +444,7 @@ pure subroutine ${MFI_NAME}$(a, b, c, uplo, trans, alpha, beta)
 end subroutine
 #:enddef
 
-#:def trmm_trsm(MFI_NAME,F77_NAME,TYPE,KIND)
+#:def trmm_trsm(MFI_NAME,F77_NAME,TYPE,KIND,ORIGINAL_NAME)
 pure subroutine ${MFI_NAME}$(a, b, side, uplo, transa, diag, alpha)
 @:parameter(integer, wp=${KIND}$)
 @:args(${TYPE}$, in,    a(:,:))
@@ -515,6 +527,7 @@ $:mfi_interface('i?amax', DEFAULT_TYPES)
 #:if defined('MFI_EXTENSIONS')
 $:mfi_interface('i?amin', DEFAULT_TYPES)
 #:endif
+$:mfi_interface('?lamch', REAL_TYPES)
 
 contains
 
@@ -578,5 +591,6 @@ $:mfi_implement('i?amax', DEFAULT_TYPES, iamin_iamax)
 #:if defined('MFI_EXTENSIONS')
 $:mfi_implement('i?amin', DEFAULT_TYPES, iamin_iamax)
 #:endif
+$:mfi_implement('?lamch', REAL_TYPES, lamch)
 
 end module

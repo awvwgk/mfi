@@ -220,6 +220,10 @@ interface mfi_iamin
     module procedure mfi_icamin
     module procedure mfi_izamin
 end interface
+interface mfi_lamch
+    module procedure mfi_slamch
+    module procedure mfi_dlamch
+end interface
 
 contains
 
@@ -4436,6 +4440,22 @@ pure function mfi_izamin(x, incx)
     end if
     n = size(x)
     mfi_izamin = f77_iamin(n,x,local_incx)
+end function
+pure function mfi_slamch(cmach, kind) result(res)
+    integer, parameter :: wp = REAL32
+    character, intent(in) :: cmach
+    real(wp), intent(in) :: kind
+    !! Just a kind placeholder
+    real(wp) :: res
+    res = slamch(cmach)
+end function
+pure function mfi_dlamch(cmach, kind) result(res)
+    integer, parameter :: wp = REAL64
+    character, intent(in) :: cmach
+    real(wp), intent(in) :: kind
+    !! Just a kind placeholder
+    real(wp) :: res
+    res = dlamch(cmach)
 end function
 
 end module
