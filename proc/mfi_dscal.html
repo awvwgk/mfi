@@ -10,7 +10,7 @@
     <meta name="author" content="I. G. Pauli" >
     <link rel="icon" href="../favicon.png">
 
-    <title>icamax &ndash; MFI - Modern Fortran Interfaces</title>
+    <title>mfi_dscal &ndash; MFI - Modern Fortran Interfaces</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -59,8 +59,8 @@
 
     <div class="container">
   <div class="row">
-    <h1>icamax
-      <small>Interface</small>
+    <h1>mfi_dscal
+      <small>Subroutine</small>
       
     </h1>
       <div class="container p-2 mb-4 bg-light border rounded-3">
@@ -71,7 +71,7 @@
 
             <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
               <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
-                 title=" 0.2% of total for procedures.">34 statements</a>
+                 title=" 0.1% of total for procedures.">15 statements</a>
             </li>
 
             <li class="list-inline-item" id="source-file">
@@ -84,8 +84,8 @@
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb justify-content-end mb-0">
                 <li class="breadcrumb-item"><a href='../sourcefile/blas.f90.html'>blas.f90</a></li>
-                <li class="breadcrumb-item"><a href='../module/f77_blas.html'>f77_blas</a></li>
-            <li class="breadcrumb-item active" aria-current="page">icamax</li>
+                <li class="breadcrumb-item"><a href='../module/mfi_blas.html'>mfi_blas</a></li>
+            <li class="breadcrumb-item active" aria-current="page">mfi_dscal</li>
           </ol>
         </nav>
       </div>
@@ -124,18 +124,18 @@
   
   
 
-    <em>None</em>
 
   </div>
 
     </div>
     
     <div class="col-md-9" id='text'>
-      <h2>interface <br>
-      public pure function icamax(n, x, incx)  
-</h2>    
-
+    <h2>public pure subroutine mfi_dscal(x, a, incx)  
+</h2>
     
+
+    <p>MFI_DSCAL scales a vector by a constant.</p>
+
 
     <h3>Arguments</h3>
         <table class="table table-striped varlist">
@@ -150,41 +150,41 @@
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-n~128"></span>
-              integer,
+              <span class="anchor" id="variable-x~30"></span>
+              real(kind=wp),
             </td>
-<td>intent(in)</td>
+<td>intent(inout)</td>
               <td></td>            <td>
               
             </td>
             <td>::</td>
-            <td><strong>n</strong></td>
+            <td><strong>x</strong>(:)</td>
             <td>
                 
             </td>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-x~103"></span>
-              complex(kind=wp),
+              <span class="anchor" id="variable-a~56"></span>
+              real(kind=wp),
             </td>
 <td>intent(in)</td>
               <td></td>            <td>
               
             </td>
             <td>::</td>
-            <td><strong>x</strong>(*)</td>
+            <td><strong>a</strong></td>
             <td>
                 
             </td>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-incx~104"></span>
+              <span class="anchor" id="variable-incx~30"></span>
               integer,
             </td>
-<td>intent(in)</td>
-              <td></td>            <td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
               
             </td>
             <td>::</td>
@@ -196,12 +196,21 @@
     </tbody>
   </table>
 
-      <h3>Return Value <span class="anchor" id="variable-icamax"></span><small>integer</small></h3>
-    
     <br>
 
- </div>
-</div>
+
+    
+    
+
+    
+    
+
+
+
+    
+    
+    </div>
+  </div>
 
       <hr>
     </div> <!-- /container -->
