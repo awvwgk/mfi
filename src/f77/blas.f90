@@ -192,7 +192,6 @@ interface f77_dotc
     procedure :: zdotc
 end interface
 
-!$:f77_interface('?rot',  DEFAULT_TYPES, rot,  result=REAL_TYPES)
 !$:f77_interface('?rotg', DEFAULT_TYPES, rotg, result=REAL_TYPES)
 
 interface
@@ -417,7 +416,7 @@ pure subroutine sscal(n, a, x, incx)
     import :: REAL32
     integer, parameter :: wp = REAL32
     real(wp), intent(inout) :: x(*)
-    real(wp), intent(inout) :: a
+    real(wp), intent(in) :: a
     integer, intent(in) :: n
     integer, intent(in) :: incx
 end subroutine
@@ -426,7 +425,7 @@ pure subroutine dscal(n, a, x, incx)
     import :: REAL64
     integer, parameter :: wp = REAL64
     real(wp), intent(inout) :: x(*)
-    real(wp), intent(inout) :: a
+    real(wp), intent(in) :: a
     integer, intent(in) :: n
     integer, intent(in) :: incx
 end subroutine
@@ -435,7 +434,7 @@ pure subroutine cscal(n, a, x, incx)
     import :: REAL32
     integer, parameter :: wp = REAL32
     complex(wp), intent(inout) :: x(*)
-    complex(wp), intent(inout) :: a
+    complex(wp), intent(in) :: a
     integer, intent(in) :: n
     integer, intent(in) :: incx
 end subroutine
@@ -444,7 +443,7 @@ pure subroutine zscal(n, a, x, incx)
     import :: REAL64
     integer, parameter :: wp = REAL64
     complex(wp), intent(inout) :: x(*)
-    complex(wp), intent(inout) :: a
+    complex(wp), intent(in) :: a
     integer, intent(in) :: n
     integer, intent(in) :: incx
 end subroutine
@@ -479,8 +478,103 @@ interface f77_scal
     procedure :: dscal
     procedure :: cscal
     procedure :: zscal
-    procedure :: zdscal
     procedure :: csscal
+    procedure :: zdscal
+end interface
+
+
+interface
+!> SROT applies a plane rotation.
+pure subroutine srot(n, x, incx, y, incy, c, s)
+    import :: REAL32
+    integer, parameter :: wp = REAL32
+    real(wp), intent(in) :: x(*)
+    real(wp), intent(in) :: y(*)
+    integer, intent(in) :: n
+    integer, intent(in) :: incx
+    integer, intent(in) :: incy
+    real(wp), intent(in) :: c
+    real(wp), intent(in) :: s
+end subroutine
+!> DROT applies a plane rotation.
+pure subroutine drot(n, x, incx, y, incy, c, s)
+    import :: REAL64
+    integer, parameter :: wp = REAL64
+    real(wp), intent(in) :: x(*)
+    real(wp), intent(in) :: y(*)
+    integer, intent(in) :: n
+    integer, intent(in) :: incx
+    integer, intent(in) :: incy
+    real(wp), intent(in) :: c
+    real(wp), intent(in) :: s
+end subroutine
+!> CROT applies a plane rotation.
+pure subroutine crot(n, x, incx, y, incy, c, s)
+    import :: REAL32
+    integer, parameter :: wp = REAL32
+    complex(wp), intent(in) :: x(*)
+    complex(wp), intent(in) :: y(*)
+    integer, intent(in) :: n
+    integer, intent(in) :: incx
+    integer, intent(in) :: incy
+    real(wp), intent(in) :: c
+    complex(wp), intent(in) :: s
+end subroutine
+!> ZROT applies a plane rotation.
+pure subroutine zrot(n, x, incx, y, incy, c, s)
+    import :: REAL64
+    integer, parameter :: wp = REAL64
+    complex(wp), intent(in) :: x(*)
+    complex(wp), intent(in) :: y(*)
+    integer, intent(in) :: n
+    integer, intent(in) :: incx
+    integer, intent(in) :: incy
+    real(wp), intent(in) :: c
+    complex(wp), intent(in) :: s
+end subroutine
+end interface
+
+
+
+interface
+!> CSROT applies a plane rotation,
+!> where the cos and sin (c and s) are real
+!> and the vectors x and y are complex.
+pure subroutine csrot(n, x, incx, y, incy, c, s)
+    import :: REAL32
+    integer, parameter :: wp = REAL32
+    complex(wp), intent(in) :: x(*)
+    complex(wp), intent(in) :: y(*)
+    integer, intent(in) :: n
+    integer, intent(in) :: incx
+    integer, intent(in) :: incy
+    real(wp), intent(in) :: c
+    real(wp), intent(in) :: s
+end subroutine
+!> ZDROT applies a plane rotation,
+!> where the cos and sin (c and s) are real
+!> and the vectors x and y are complex.
+pure subroutine zdrot(n, x, incx, y, incy, c, s)
+    import :: REAL64
+    integer, parameter :: wp = REAL64
+    complex(wp), intent(in) :: x(*)
+    complex(wp), intent(in) :: y(*)
+    integer, intent(in) :: n
+    integer, intent(in) :: incx
+    integer, intent(in) :: incy
+    real(wp), intent(in) :: c
+    real(wp), intent(in) :: s
+end subroutine
+end interface
+
+
+interface f77_rot
+    procedure :: srot
+    procedure :: drot
+    procedure :: crot
+    procedure :: zrot
+    procedure :: csrot
+    procedure :: zdrot
 end interface
 
 ! BLAS level 2
@@ -2050,50 +2144,13 @@ end interface
 
 ! Extensions
 ! BLAS Level 1 - Utils / Extensions
-
-interface
-pure function isamax(n, x, incx)
-    import :: REAL32
-    integer, parameter :: wp = REAL32
-    integer :: isamax
-    real(wp), intent(in) :: x(*)
-    integer, intent(in) :: n
-    integer, intent(in) :: incx
-end function
-pure function idamax(n, x, incx)
-    import :: REAL64
-    integer, parameter :: wp = REAL64
-    integer :: idamax
-    real(wp), intent(in) :: x(*)
-    integer, intent(in) :: n
-    integer, intent(in) :: incx
-end function
-pure function icamax(n, x, incx)
-    import :: REAL32
-    integer, parameter :: wp = REAL32
-    integer :: icamax
-    complex(wp), intent(in) :: x(*)
-    integer, intent(in) :: n
-    integer, intent(in) :: incx
-end function
-pure function izamax(n, x, incx)
-    import :: REAL64
-    integer, parameter :: wp = REAL64
-    integer :: izamax
-    complex(wp), intent(in) :: x(*)
-    integer, intent(in) :: n
-    integer, intent(in) :: incx
-end function
-end interface
-
+! Implement the blas extensions in
 interface f77_iamax
     procedure :: isamax
     procedure :: idamax
     procedure :: icamax
     procedure :: izamax
 end interface
-
-! Implement the blas extensions in
 interface f77_iamin
     procedure :: isamin
     procedure :: idamin
@@ -2101,6 +2158,58 @@ interface f77_iamin
     procedure :: izamin
 end interface
 contains
+pure function isamax(n, x, incx)
+    integer, parameter :: wp = REAL32
+    integer :: isamax
+    real(wp), intent(in) :: x(*)
+    integer, intent(in) :: n
+    integer, intent(in) :: incx
+    !If either n or incx are not positive, the routine returns 0.
+    if (n <= 0 .or. incx <= 0) then
+        isamax = 0
+        return
+    end if
+    isamax = minloc(x(1:n:incx),dim=1)
+end function
+pure function idamax(n, x, incx)
+    integer, parameter :: wp = REAL64
+    integer :: idamax
+    real(wp), intent(in) :: x(*)
+    integer, intent(in) :: n
+    integer, intent(in) :: incx
+    !If either n or incx are not positive, the routine returns 0.
+    if (n <= 0 .or. incx <= 0) then
+        idamax = 0
+        return
+    end if
+    idamax = minloc(x(1:n:incx),dim=1)
+end function
+pure function icamax(n, x, incx)
+    integer, parameter :: wp = REAL32
+    integer :: icamax
+    complex(wp), intent(in) :: x(*)
+    integer, intent(in) :: n
+    integer, intent(in) :: incx
+    !If either n or incx are not positive, the routine returns 0.
+    if (n <= 0 .or. incx <= 0) then
+        icamax = 0
+        return
+    end if
+    icamax = minloc(abs(real(x(1:n:incx))) + abs(aimag(x(1:n:incx))),dim=1)
+end function
+pure function izamax(n, x, incx)
+    integer, parameter :: wp = REAL64
+    integer :: izamax
+    complex(wp), intent(in) :: x(*)
+    integer, intent(in) :: n
+    integer, intent(in) :: incx
+    !If either n or incx are not positive, the routine returns 0.
+    if (n <= 0 .or. incx <= 0) then
+        izamax = 0
+        return
+    end if
+    izamax = minloc(abs(real(x(1:n:incx))) + abs(aimag(x(1:n:incx))),dim=1)
+end function
 pure function isamin(n, x, incx)
     integer, parameter :: wp = REAL32
     integer :: isamin
