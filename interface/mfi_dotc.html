@@ -71,7 +71,7 @@
 
             <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
               <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
-                 title="<p> 0.0% of total for procedures.</p>Including implementation: 50 statements,  0.3% of total for procedures.">4 statements</a>
+                 title="<p> 0.0% of total for procedures.</p>Including implementation: 50 statements,  0.5% of total for procedures.">4 statements</a>
             </li>
 
             <li class="list-inline-item" id="source-file">
@@ -143,8 +143,11 @@
 
     <div class="col-md-9" id='text'>
       <h2>public interface mfi_dotc</h2>
-      
-
+      <p>Generic modern interface for DOTC.
+Supports c, z.
+See also:
+<a href="../interface/f77_dotc.html#proc-cdotc">cdotc</a>,<a href="../interface/f77_dotc.html#proc-zdotc">zdotc</a>.</p>
+<br>
 
 
         <h2>Module Procedures</h2>
@@ -153,7 +156,8 @@
 </h3></div>
     <div class="card-body">
           
-  
+  <p>Modern interface for <a href="../interface/f77_dotc.html#proc-cdotc">cdotc</a>.
+See also: <a href="../interface/mfi_dotc.html">mfi_dotc</a>, <a href="../interface/f77_dotc.html">f77_dotc</a>.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -168,8 +172,8 @@
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-x~19"></span>
-              complex(kind=wp),
+              <span class="anchor" id="variable-x~15"></span>
+              complex(kind=REAL32),
             </td>
 <td>intent(in)</td>
               <td></td>            <td>
@@ -183,8 +187,8 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-y~11"></span>
-              complex(kind=wp),
+              <span class="anchor" id="variable-y~15"></span>
+              complex(kind=REAL32),
             </td>
 <td>intent(in)</td>
               <td></td>            <td>
@@ -198,7 +202,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-incx~19"></span>
+              <span class="anchor" id="variable-incx~15"></span>
               integer,
             </td>
 <td>intent(in),</td>
@@ -213,7 +217,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-incy~11"></span>
+              <span class="anchor" id="variable-incy~15"></span>
               integer,
             </td>
 <td>intent(in),</td>
@@ -231,7 +235,7 @@
 
     <h4>
     Return Value
-    <small>complex(kind=wp)</small>
+    <small>complex(kind=REAL32)</small>
     </h4>
     
 
@@ -243,7 +247,8 @@
 </h3></div>
     <div class="card-body">
           
-  
+  <p>Modern interface for <a href="../interface/f77_dotc.html#proc-zdotc">zdotc</a>.
+See also: <a href="../interface/mfi_dotc.html">mfi_dotc</a>, <a href="../interface/f77_dotc.html">f77_dotc</a>.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -258,8 +263,8 @@
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-x~20"></span>
-              complex(kind=wp),
+              <span class="anchor" id="variable-x~16"></span>
+              complex(kind=REAL64),
             </td>
 <td>intent(in)</td>
               <td></td>            <td>
@@ -273,8 +278,8 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-y~12"></span>
-              complex(kind=wp),
+              <span class="anchor" id="variable-y~16"></span>
+              complex(kind=REAL64),
             </td>
 <td>intent(in)</td>
               <td></td>            <td>
@@ -288,7 +293,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-incx~20"></span>
+              <span class="anchor" id="variable-incx~16"></span>
               integer,
             </td>
 <td>intent(in),</td>
@@ -303,7 +308,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-incy~12"></span>
+              <span class="anchor" id="variable-incy~16"></span>
               integer,
             </td>
 <td>intent(in),</td>
@@ -321,7 +326,7 @@
 
     <h4>
     Return Value
-    <small>complex(kind=wp)</small>
+    <small>complex(kind=REAL64)</small>
     </h4>
     
 

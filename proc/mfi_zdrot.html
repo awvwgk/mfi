@@ -134,7 +134,9 @@
 </h2>
     
 
-    <p>Given two vectors x and y,
+    <p>Modern interface for <a href="../interface/f77_rot.html#proc-zdrot">zdrot</a>.
+ See also: <a href="../interface/mfi_rot.html">mfi_rot</a>, <a href="../interface/f77_rot.html">f77_rot</a>.
+ Given two vectors x and y,
  each vector element of these vectors is replaced as follows:</p>
 <div class="codehilite"><pre><span></span><code><span class="w"> </span><span class="n">xi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="o">*</span><span class="n">xi</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">s</span><span class="o">*</span><span class="n">yi</span>
 <span class="w"> </span><span class="n">yi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="o">*</span><span class="n">yi</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">conj</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">*</span><span class="n">xi</span>
@@ -154,8 +156,8 @@
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-x~26"></span>
-              complex(kind=wp),
+              <span class="anchor" id="variable-x~32"></span>
+              complex(kind=REAL64),
             </td>
 <td>intent(inout)</td>
               <td></td>            <td>
@@ -169,8 +171,8 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-y~18"></span>
-              complex(kind=wp),
+              <span class="anchor" id="variable-y~24"></span>
+              complex(kind=REAL64),
             </td>
 <td>intent(inout)</td>
               <td></td>            <td>
@@ -184,8 +186,8 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-c~10"></span>
-              real(kind=wp),
+              <span class="anchor" id="variable-c~6"></span>
+              real(kind=REAL64),
             </td>
 <td>intent(in)</td>
               <td></td>            <td>
@@ -199,8 +201,8 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-s~14"></span>
-              real(kind=wp),
+              <span class="anchor" id="variable-s~6"></span>
+              real(kind=REAL64),
             </td>
 <td>intent(in)</td>
               <td></td>            <td>
@@ -214,7 +216,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-incx~26"></span>
+              <span class="anchor" id="variable-incx~32"></span>
               integer,
             </td>
 <td>intent(in),</td>
@@ -229,7 +231,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-incy~18"></span>
+              <span class="anchor" id="variable-incy~24"></span>
               integer,
             </td>
 <td>intent(in),</td>

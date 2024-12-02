@@ -71,7 +71,7 @@
 
             <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
               <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
-                 title="<p> 0.0% of total for procedures.</p>Including implementation: 78 statements,  0.5% of total for procedures.">4 statements</a>
+                 title="<p> 0.0% of total for procedures.</p>Including implementation: 78 statements,  0.8% of total for procedures.">4 statements</a>
             </li>
 
             <li class="list-inline-item" id="source-file">
@@ -143,8 +143,11 @@
 
     <div class="col-md-9" id='text'>
       <h2>public interface mfi_hpr2</h2>
-      
-
+      <p>Generic modern interface for HPR2.
+Supports c, z.
+See also:
+<a href="../interface/f77_hpr2.html#proc-chpr2">chpr2</a>,<a href="../interface/f77_hpr2.html#proc-zhpr2">zhpr2</a>.</p>
+<br>
 
 
         <h2>Module Procedures</h2>
@@ -153,7 +156,8 @@
 </h3></div>
     <div class="card-body">
           
-  
+  <p>Modern interface for <a href="../interface/f77_hpr2.html#proc-chpr2">chpr2</a>.
+See also: <a href="../interface/mfi_hpr2.html">mfi_hpr2</a>, <a href="../interface/f77_hpr2.html">f77_hpr2</a>.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -169,7 +173,7 @@
         <tr>
             <td>
               <span class="anchor" id="variable-ap~5"></span>
-              complex(kind=wp),
+              complex(kind=REAL32),
             </td>
 <td>intent(inout)</td>
               <td></td>            <td>
@@ -183,8 +187,8 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-x~65"></span>
-              complex(kind=wp),
+              <span class="anchor" id="variable-x~67"></span>
+              complex(kind=REAL32),
             </td>
 <td>intent(in)</td>
               <td></td>            <td>
@@ -198,8 +202,8 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-y~47"></span>
-              complex(kind=wp),
+              <span class="anchor" id="variable-y~49"></span>
+              complex(kind=REAL32),
             </td>
 <td>intent(in)</td>
               <td></td>            <td>
@@ -213,7 +217,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-uplo~39"></span>
+              <span class="anchor" id="variable-uplo~13"></span>
               character(len=1),
             </td>
 <td>intent(in),</td>
@@ -229,7 +233,7 @@
         <tr>
             <td>
               <span class="anchor" id="variable-alpha~27"></span>
-              complex(kind=wp),
+              complex(kind=REAL32),
             </td>
 <td>intent(in),</td>
               <td>optional</td>            <td>
@@ -243,7 +247,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-incx~65"></span>
+              <span class="anchor" id="variable-incx~67"></span>
               integer,
             </td>
 <td>intent(in),</td>
@@ -258,7 +262,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-incy~47"></span>
+              <span class="anchor" id="variable-incy~49"></span>
               integer,
             </td>
 <td>intent(in),</td>
@@ -283,7 +287,8 @@
 </h3></div>
     <div class="card-body">
           
-  
+  <p>Modern interface for <a href="../interface/f77_hpr2.html#proc-zhpr2">zhpr2</a>.
+See also: <a href="../interface/mfi_hpr2.html">mfi_hpr2</a>, <a href="../interface/f77_hpr2.html">f77_hpr2</a>.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -299,7 +304,7 @@
         <tr>
             <td>
               <span class="anchor" id="variable-ap~6"></span>
-              complex(kind=wp),
+              complex(kind=REAL64),
             </td>
 <td>intent(inout)</td>
               <td></td>            <td>
@@ -313,8 +318,8 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-x~66"></span>
-              complex(kind=wp),
+              <span class="anchor" id="variable-x~68"></span>
+              complex(kind=REAL64),
             </td>
 <td>intent(in)</td>
               <td></td>            <td>
@@ -328,8 +333,8 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-y~48"></span>
-              complex(kind=wp),
+              <span class="anchor" id="variable-y~50"></span>
+              complex(kind=REAL64),
             </td>
 <td>intent(in)</td>
               <td></td>            <td>
@@ -343,7 +348,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-uplo~40"></span>
+              <span class="anchor" id="variable-uplo~14"></span>
               character(len=1),
             </td>
 <td>intent(in),</td>
@@ -359,7 +364,7 @@
         <tr>
             <td>
               <span class="anchor" id="variable-alpha~28"></span>
-              complex(kind=wp),
+              complex(kind=REAL64),
             </td>
 <td>intent(in),</td>
               <td>optional</td>            <td>
@@ -373,7 +378,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-incx~66"></span>
+              <span class="anchor" id="variable-incx~68"></span>
               integer,
             </td>
 <td>intent(in),</td>
@@ -388,7 +393,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-incy~48"></span>
+              <span class="anchor" id="variable-incy~50"></span>
               integer,
             </td>
 <td>intent(in),</td>

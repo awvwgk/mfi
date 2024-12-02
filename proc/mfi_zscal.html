@@ -71,7 +71,7 @@
 
             <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
               <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
-                 title=" 0.1% of total for procedures.">15 statements</a>
+                 title=" 0.1% of total for procedures.">14 statements</a>
             </li>
 
             <li class="list-inline-item" id="source-file">
@@ -130,11 +130,13 @@
     </div>
     
     <div class="col-md-9" id='text'>
-    <h2>public pure subroutine mfi_zscal(x, a, incx)  
+    <h2>public pure subroutine mfi_zscal(a, x, incx)  
 </h2>
     
 
-    <p>MFI_ZSCAL scales a vector by a constant.</p>
+    <p>Modern interface for <a href="../interface/f77_scal.html#proc-zscal">zscal</a>.
+See also: <a href="../interface/mfi_scal.html">mfi_scal</a>, <a href="../interface/f77_scal.html">f77_scal</a>.
+MFI_ZSCAL scales a vector by a constant.</p>
 
 
     <h3>Arguments</h3>
@@ -150,23 +152,8 @@
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-x~32"></span>
-              complex(kind=wp),
-            </td>
-<td>intent(inout)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>x</strong>(:)</td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-a~58"></span>
-              complex(kind=wp),
+              <span class="anchor" id="variable-a~8"></span>
+              complex(kind=REAL64),
             </td>
 <td>intent(in)</td>
               <td></td>            <td>
@@ -180,7 +167,22 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-incx~32"></span>
+              <span class="anchor" id="variable-x~38"></span>
+              complex(kind=REAL64),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>x</strong>(:)</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-incx~38"></span>
               integer,
             </td>
 <td>intent(in),</td>

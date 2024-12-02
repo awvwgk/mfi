@@ -71,7 +71,7 @@
 
             <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
               <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
-                 title="<p> 0.0% of total for procedures.</p>Including implementation: 86 statements,  0.6% of total for procedures.">4 statements</a>
+                 title="<p> 0.0% of total for procedures.</p>Including implementation: 86 statements,  0.9% of total for procedures.">4 statements</a>
             </li>
 
             <li class="list-inline-item" id="source-file">
@@ -143,8 +143,11 @@
 
     <div class="col-md-9" id='text'>
       <h2>public interface mfi_hemm</h2>
-      
-
+      <p>Generic modern interface for HEMM.
+Supports c, z.
+See also:
+<a href="../interface/f77_hemm.html#proc-chemm">chemm</a>,<a href="../interface/f77_hemm.html#proc-zhemm">zhemm</a>.</p>
+<br>
 
 
         <h2>Module Procedures</h2>
@@ -153,7 +156,8 @@
 </h3></div>
     <div class="card-body">
           
-  
+  <p>Modern interface for <a href="../interface/f77_hemm.html#proc-chemm">chemm</a>.
+See also: <a href="../interface/mfi_hemm.html">mfi_hemm</a>, <a href="../interface/f77_hemm.html">f77_hemm</a>.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -168,8 +172,8 @@
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-a~111"></span>
-              complex(kind=wp),
+              <span class="anchor" id="variable-a~61"></span>
+              complex(kind=REAL32),
             </td>
 <td>intent(in)</td>
               <td></td>            <td>
@@ -183,8 +187,8 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-b~15"></span>
-              complex(kind=wp),
+              <span class="anchor" id="variable-b~5"></span>
+              complex(kind=REAL32),
             </td>
 <td>intent(in)</td>
               <td></td>            <td>
@@ -198,8 +202,8 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-c~15"></span>
-              complex(kind=wp),
+              <span class="anchor" id="variable-c~11"></span>
+              complex(kind=REAL32),
             </td>
 <td>intent(inout)</td>
               <td></td>            <td>
@@ -228,7 +232,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-uplo~79"></span>
+              <span class="anchor" id="variable-uplo~53"></span>
               character(len=1),
             </td>
 <td>intent(in),</td>
@@ -244,7 +248,7 @@
         <tr>
             <td>
               <span class="anchor" id="variable-alpha~47"></span>
-              complex(kind=wp),
+              complex(kind=REAL32),
             </td>
 <td>intent(in),</td>
               <td>optional</td>            <td>
@@ -259,7 +263,7 @@
         <tr>
             <td>
               <span class="anchor" id="variable-beta~25"></span>
-              complex(kind=wp),
+              complex(kind=REAL32),
             </td>
 <td>intent(in),</td>
               <td>optional</td>            <td>
@@ -283,7 +287,8 @@
 </h3></div>
     <div class="card-body">
           
-  
+  <p>Modern interface for <a href="../interface/f77_hemm.html#proc-zhemm">zhemm</a>.
+See also: <a href="../interface/mfi_hemm.html">mfi_hemm</a>, <a href="../interface/f77_hemm.html">f77_hemm</a>.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -298,8 +303,8 @@
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-a~112"></span>
-              complex(kind=wp),
+              <span class="anchor" id="variable-a~62"></span>
+              complex(kind=REAL64),
             </td>
 <td>intent(in)</td>
               <td></td>            <td>
@@ -313,8 +318,8 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-b~16"></span>
-              complex(kind=wp),
+              <span class="anchor" id="variable-b~6"></span>
+              complex(kind=REAL64),
             </td>
 <td>intent(in)</td>
               <td></td>            <td>
@@ -328,8 +333,8 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-c~16"></span>
-              complex(kind=wp),
+              <span class="anchor" id="variable-c~12"></span>
+              complex(kind=REAL64),
             </td>
 <td>intent(inout)</td>
               <td></td>            <td>
@@ -358,7 +363,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-uplo~80"></span>
+              <span class="anchor" id="variable-uplo~54"></span>
               character(len=1),
             </td>
 <td>intent(in),</td>
@@ -374,7 +379,7 @@
         <tr>
             <td>
               <span class="anchor" id="variable-alpha~48"></span>
-              complex(kind=wp),
+              complex(kind=REAL64),
             </td>
 <td>intent(in),</td>
               <td>optional</td>            <td>
@@ -389,7 +394,7 @@
         <tr>
             <td>
               <span class="anchor" id="variable-beta~26"></span>
-              complex(kind=wp),
+              complex(kind=REAL64),
             </td>
 <td>intent(in),</td>
               <td>optional</td>            <td>

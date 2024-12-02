@@ -71,7 +71,7 @@
 
             <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
               <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
-                 title="<p> 0.0% of total for procedures.</p>Including implementation: 92 statements,  0.6% of total for procedures.">4 statements</a>
+                 title="<p> 0.0% of total for procedures.</p>Including implementation: 92 statements,  0.9% of total for procedures.">4 statements</a>
             </li>
 
             <li class="list-inline-item" id="source-file">
@@ -143,8 +143,11 @@
 
     <div class="col-md-9" id='text'>
       <h2>public interface mfi_hpmv</h2>
-      
-
+      <p>Generic modern interface for HPMV.
+Supports c, z.
+See also:
+<a href="../interface/f77_hpmv.html#proc-chpmv">chpmv</a>,<a href="../interface/f77_hpmv.html#proc-zhpmv">zhpmv</a>.</p>
+<br>
 
 
         <h2>Module Procedures</h2>
@@ -153,7 +156,8 @@
 </h3></div>
     <div class="card-body">
           
-  
+  <p>Modern interface for <a href="../interface/f77_hpmv.html#proc-chpmv">chpmv</a>.
+See also: <a href="../interface/mfi_hpmv.html">mfi_hpmv</a>, <a href="../interface/f77_hpmv.html">f77_hpmv</a>.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -169,7 +173,7 @@
         <tr>
             <td>
               <span class="anchor" id="variable-ap"></span>
-              complex(kind=wp),
+              complex(kind=REAL32),
             </td>
 <td>intent(in)</td>
               <td></td>            <td>
@@ -183,8 +187,8 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-x~61"></span>
-              complex(kind=wp),
+              <span class="anchor" id="variable-x~63"></span>
+              complex(kind=REAL32),
             </td>
 <td>intent(in)</td>
               <td></td>            <td>
@@ -198,8 +202,8 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-y~45"></span>
-              complex(kind=wp),
+              <span class="anchor" id="variable-y~47"></span>
+              complex(kind=REAL32),
             </td>
 <td>intent(inout)</td>
               <td></td>            <td>
@@ -213,7 +217,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-uplo~35"></span>
+              <span class="anchor" id="variable-uplo~9"></span>
               character(len=1),
             </td>
 <td>intent(in),</td>
@@ -229,7 +233,7 @@
         <tr>
             <td>
               <span class="anchor" id="variable-alpha~23"></span>
-              complex(kind=wp),
+              complex(kind=REAL32),
             </td>
 <td>intent(in),</td>
               <td>optional</td>            <td>
@@ -244,7 +248,7 @@
         <tr>
             <td>
               <span class="anchor" id="variable-beta~13"></span>
-              complex(kind=wp),
+              complex(kind=REAL32),
             </td>
 <td>intent(in),</td>
               <td>optional</td>            <td>
@@ -258,7 +262,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-incx~61"></span>
+              <span class="anchor" id="variable-incx~63"></span>
               integer,
             </td>
 <td>intent(in),</td>
@@ -273,7 +277,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-incy~45"></span>
+              <span class="anchor" id="variable-incy~47"></span>
               integer,
             </td>
 <td>intent(in),</td>
@@ -298,7 +302,8 @@
 </h3></div>
     <div class="card-body">
           
-  
+  <p>Modern interface for <a href="../interface/f77_hpmv.html#proc-zhpmv">zhpmv</a>.
+See also: <a href="../interface/mfi_hpmv.html">mfi_hpmv</a>, <a href="../interface/f77_hpmv.html">f77_hpmv</a>.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -314,7 +319,7 @@
         <tr>
             <td>
               <span class="anchor" id="variable-ap~2"></span>
-              complex(kind=wp),
+              complex(kind=REAL64),
             </td>
 <td>intent(in)</td>
               <td></td>            <td>
@@ -328,8 +333,8 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-x~62"></span>
-              complex(kind=wp),
+              <span class="anchor" id="variable-x~64"></span>
+              complex(kind=REAL64),
             </td>
 <td>intent(in)</td>
               <td></td>            <td>
@@ -343,8 +348,8 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-y~46"></span>
-              complex(kind=wp),
+              <span class="anchor" id="variable-y~48"></span>
+              complex(kind=REAL64),
             </td>
 <td>intent(inout)</td>
               <td></td>            <td>
@@ -358,7 +363,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-uplo~36"></span>
+              <span class="anchor" id="variable-uplo~10"></span>
               character(len=1),
             </td>
 <td>intent(in),</td>
@@ -374,7 +379,7 @@
         <tr>
             <td>
               <span class="anchor" id="variable-alpha~24"></span>
-              complex(kind=wp),
+              complex(kind=REAL64),
             </td>
 <td>intent(in),</td>
               <td>optional</td>            <td>
@@ -389,7 +394,7 @@
         <tr>
             <td>
               <span class="anchor" id="variable-beta~14"></span>
-              complex(kind=wp),
+              complex(kind=REAL64),
             </td>
 <td>intent(in),</td>
               <td>optional</td>            <td>
@@ -403,7 +408,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-incx~62"></span>
+              <span class="anchor" id="variable-incx~64"></span>
               integer,
             </td>
 <td>intent(in),</td>
@@ -418,7 +423,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-incy~46"></span>
+              <span class="anchor" id="variable-incy~48"></span>
               integer,
             </td>
 <td>intent(in),</td>

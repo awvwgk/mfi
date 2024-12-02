@@ -134,7 +134,9 @@
 </h2>
     
 
-    <p>Given two vectors x and y,
+    <p>Modern interface for <a href="../interface/f77_rot.html#proc-srot">srot</a>.
+ See also: <a href="../interface/mfi_rot.html">mfi_rot</a>, <a href="../interface/f77_rot.html">f77_rot</a>.
+ Given two vectors x and y,
  each vector element of these vectors is replaced as follows:</p>
 <div class="codehilite"><pre><span></span><code><span class="w"> </span><span class="n">xi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="o">*</span><span class="n">xi</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">s</span><span class="o">*</span><span class="n">yi</span>
 <span class="w"> </span><span class="n">yi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="o">*</span><span class="n">yi</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">s</span><span class="o">*</span><span class="n">xi</span>
@@ -154,8 +156,8 @@
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-x~21"></span>
-              real(kind=wp),
+              <span class="anchor" id="variable-x~27"></span>
+              real(kind=REAL32),
             </td>
 <td>intent(inout)</td>
               <td></td>            <td>
@@ -169,8 +171,8 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-y~13"></span>
-              real(kind=wp),
+              <span class="anchor" id="variable-y~19"></span>
+              real(kind=REAL32),
             </td>
 <td>intent(inout)</td>
               <td></td>            <td>
@@ -184,8 +186,8 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-c~5"></span>
-              real(kind=wp),
+              <span class="anchor" id="variable-c"></span>
+              real(kind=REAL32),
             </td>
 <td>intent(in)</td>
               <td></td>            <td>
@@ -199,8 +201,8 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-s~9"></span>
-              real(kind=wp),
+              <span class="anchor" id="variable-s"></span>
+              real(kind=REAL32),
             </td>
 <td>intent(in)</td>
               <td></td>            <td>
@@ -214,7 +216,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-incx~21"></span>
+              <span class="anchor" id="variable-incx~27"></span>
               integer,
             </td>
 <td>intent(in),</td>
@@ -229,7 +231,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-incy~13"></span>
+              <span class="anchor" id="variable-incy~19"></span>
               integer,
             </td>
 <td>intent(in),</td>

@@ -71,7 +71,7 @@
 
             <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
               <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
-                 title="<p> 0.1% of total for procedures.</p>Including implementation: 98 statements,  0.7% of total for procedures.">8 statements</a>
+                 title="<p> 0.1% of total for procedures.</p>Including implementation: 92 statements,  0.9% of total for procedures.">8 statements</a>
             </li>
 
             <li class="list-inline-item" id="source-file">
@@ -147,17 +147,22 @@
 
     <div class="col-md-9" id='text'>
       <h2>public interface mfi_scal</h2>
-      
-
+      <p>Generic modern interface for SCAL.
+Supports s, d, c, z, cs, zd.
+See also:
+<a href="../interface/f77_scal.html#proc-sscal">sscal</a>,<a href="../interface/f77_scal.html#proc-dscal">dscal</a>,<a href="../interface/f77_scal.html#proc-cscal">cscal</a>,<a href="../interface/f77_scal.html#proc-zscal">zscal</a>,<a href="../interface/f77_scal.html#proc-csscal">csscal</a>,<a href="../interface/f77_scal.html#proc-zdscal">zdscal</a>.</p>
+<br>
 
 
         <h2>Module Procedures</h2>
             <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-mfi_sscal"></span> <h3>public pure subroutine <a href='../proc/mfi_sscal.html'>mfi_sscal</a>(x, a, incx)  
+    <div class="card-header codesum"><span class="anchor" id="proc-mfi_sscal"></span> <h3>public pure subroutine <a href='../proc/mfi_sscal.html'>mfi_sscal</a>(a, x, incx)  
 </h3></div>
     <div class="card-body">
           
-  <p>MFI_SSCAL scales a vector by a constant.</p>
+  <p>Modern interface for <a href="../interface/f77_scal.html#proc-sscal">sscal</a>.
+See also: <a href="../interface/mfi_scal.html">mfi_scal</a>, <a href="../interface/f77_scal.html">f77_scal</a>.
+MFI_SSCAL scales a vector by a constant.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -172,23 +177,8 @@
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-x~29"></span>
-              real(kind=wp),
-            </td>
-<td>intent(inout)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>x</strong>(:)</td>
-            <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-a~55"></span>
-              real(kind=wp),
+              <span class="anchor" id="variable-a~5"></span>
+              real(kind=REAL32),
             </td>
 <td>intent(in)</td>
               <td></td>            <td>
@@ -202,7 +192,22 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-incx~29"></span>
+              <span class="anchor" id="variable-x~35"></span>
+              real(kind=REAL32),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>x</strong>(:)</td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-incx~35"></span>
               integer,
             </td>
 <td>intent(in),</td>
@@ -223,11 +228,13 @@
   </div>
 
             <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-mfi_dscal"></span> <h3>public pure subroutine <a href='../proc/mfi_dscal.html'>mfi_dscal</a>(x, a, incx)  
+    <div class="card-header codesum"><span class="anchor" id="proc-mfi_dscal"></span> <h3>public pure subroutine <a href='../proc/mfi_dscal.html'>mfi_dscal</a>(a, x, incx)  
 </h3></div>
     <div class="card-body">
           
-  <p>MFI_DSCAL scales a vector by a constant.</p>
+  <p>Modern interface for <a href="../interface/f77_scal.html#proc-dscal">dscal</a>.
+See also: <a href="../interface/mfi_scal.html">mfi_scal</a>, <a href="../interface/f77_scal.html">f77_scal</a>.
+MFI_DSCAL scales a vector by a constant.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -242,23 +249,8 @@
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-x~30"></span>
-              real(kind=wp),
-            </td>
-<td>intent(inout)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>x</strong>(:)</td>
-            <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-a~56"></span>
-              real(kind=wp),
+              <span class="anchor" id="variable-a~6"></span>
+              real(kind=REAL64),
             </td>
 <td>intent(in)</td>
               <td></td>            <td>
@@ -272,7 +264,22 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-incx~30"></span>
+              <span class="anchor" id="variable-x~36"></span>
+              real(kind=REAL64),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>x</strong>(:)</td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-incx~36"></span>
               integer,
             </td>
 <td>intent(in),</td>
@@ -293,11 +300,13 @@
   </div>
 
             <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-mfi_cscal"></span> <h3>public pure subroutine <a href='../proc/mfi_cscal.html'>mfi_cscal</a>(x, a, incx)  
+    <div class="card-header codesum"><span class="anchor" id="proc-mfi_cscal"></span> <h3>public pure subroutine <a href='../proc/mfi_cscal.html'>mfi_cscal</a>(a, x, incx)  
 </h3></div>
     <div class="card-body">
           
-  <p>MFI_CSCAL scales a vector by a constant.</p>
+  <p>Modern interface for <a href="../interface/f77_scal.html#proc-cscal">cscal</a>.
+See also: <a href="../interface/mfi_scal.html">mfi_scal</a>, <a href="../interface/f77_scal.html">f77_scal</a>.
+MFI_CSCAL scales a vector by a constant.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -312,23 +321,8 @@
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-x~31"></span>
-              complex(kind=wp),
-            </td>
-<td>intent(inout)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>x</strong>(:)</td>
-            <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-a~57"></span>
-              complex(kind=wp),
+              <span class="anchor" id="variable-a~7"></span>
+              complex(kind=REAL32),
             </td>
 <td>intent(in)</td>
               <td></td>            <td>
@@ -342,7 +336,22 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-incx~31"></span>
+              <span class="anchor" id="variable-x~37"></span>
+              complex(kind=REAL32),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>x</strong>(:)</td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-incx~37"></span>
               integer,
             </td>
 <td>intent(in),</td>
@@ -363,11 +372,13 @@
   </div>
 
             <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-mfi_zscal"></span> <h3>public pure subroutine <a href='../proc/mfi_zscal.html'>mfi_zscal</a>(x, a, incx)  
+    <div class="card-header codesum"><span class="anchor" id="proc-mfi_zscal"></span> <h3>public pure subroutine <a href='../proc/mfi_zscal.html'>mfi_zscal</a>(a, x, incx)  
 </h3></div>
     <div class="card-body">
           
-  <p>MFI_ZSCAL scales a vector by a constant.</p>
+  <p>Modern interface for <a href="../interface/f77_scal.html#proc-zscal">zscal</a>.
+See also: <a href="../interface/mfi_scal.html">mfi_scal</a>, <a href="../interface/f77_scal.html">f77_scal</a>.
+MFI_ZSCAL scales a vector by a constant.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -382,23 +393,8 @@
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-x~32"></span>
-              complex(kind=wp),
-            </td>
-<td>intent(inout)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>x</strong>(:)</td>
-            <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-a~58"></span>
-              complex(kind=wp),
+              <span class="anchor" id="variable-a~8"></span>
+              complex(kind=REAL64),
             </td>
 <td>intent(in)</td>
               <td></td>            <td>
@@ -412,7 +408,22 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-incx~32"></span>
+              <span class="anchor" id="variable-x~38"></span>
+              complex(kind=REAL64),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>x</strong>(:)</td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-incx~38"></span>
               integer,
             </td>
 <td>intent(in),</td>
@@ -433,11 +444,13 @@
   </div>
 
             <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-mfi_csscal"></span> <h3>public pure subroutine <a href='../proc/mfi_csscal.html'>mfi_csscal</a>(x, a, incx)  
+    <div class="card-header codesum"><span class="anchor" id="proc-mfi_csscal"></span> <h3>public pure subroutine <a href='../proc/mfi_csscal.html'>mfi_csscal</a>(a, x, incx)  
 </h3></div>
     <div class="card-body">
           
-  <p>MFI_CSSCAL scales a vector by a constant.</p>
+  <p>Modern interface for <a href="../interface/f77_scal.html#proc-csscal">csscal</a>.
+See also: <a href="../interface/mfi_scal.html">mfi_scal</a>, <a href="../interface/f77_scal.html">f77_scal</a>.
+MFI_CSSCAL scales a vector by a constant.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -452,23 +465,8 @@
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-x~33"></span>
-              complex(kind=wp),
-            </td>
-<td>intent(inout)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>x</strong>(:)</td>
-            <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-a~59"></span>
-              real(kind=wp),
+              <span class="anchor" id="variable-a~9"></span>
+              real(kind=REAL32),
             </td>
 <td>intent(in)</td>
               <td></td>            <td>
@@ -482,7 +480,22 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-incx~33"></span>
+              <span class="anchor" id="variable-x~39"></span>
+              complex(kind=REAL32),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>x</strong>(:)</td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-incx~39"></span>
               integer,
             </td>
 <td>intent(in),</td>
@@ -503,11 +516,13 @@
   </div>
 
             <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-mfi_zdscal"></span> <h3>public pure subroutine <a href='../proc/mfi_zdscal.html'>mfi_zdscal</a>(x, a, incx)  
+    <div class="card-header codesum"><span class="anchor" id="proc-mfi_zdscal"></span> <h3>public pure subroutine <a href='../proc/mfi_zdscal.html'>mfi_zdscal</a>(a, x, incx)  
 </h3></div>
     <div class="card-body">
           
-  <p>MFI_ZDSCAL scales a vector by a constant.</p>
+  <p>Modern interface for <a href="../interface/f77_scal.html#proc-zdscal">zdscal</a>.
+See also: <a href="../interface/mfi_scal.html">mfi_scal</a>, <a href="../interface/f77_scal.html">f77_scal</a>.
+MFI_ZDSCAL scales a vector by a constant.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -522,23 +537,8 @@
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-x~34"></span>
-              complex(kind=wp),
-            </td>
-<td>intent(inout)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>x</strong>(:)</td>
-            <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-a~60"></span>
-              real(kind=wp),
+              <span class="anchor" id="variable-a~10"></span>
+              real(kind=REAL64),
             </td>
 <td>intent(in)</td>
               <td></td>            <td>
@@ -552,7 +552,22 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-incx~34"></span>
+              <span class="anchor" id="variable-x~40"></span>
+              complex(kind=REAL64),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>x</strong>(:)</td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-incx~40"></span>
               integer,
             </td>
 <td>intent(in),</td>

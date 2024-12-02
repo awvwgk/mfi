@@ -71,7 +71,7 @@
 
             <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
               <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
-                 title="<p> 0.0% of total for procedures.</p>Including implementation: 64 statements,  0.4% of total for procedures.">4 statements</a>
+                 title="<p> 0.0% of total for procedures.</p>Including implementation: 64 statements,  0.7% of total for procedures.">4 statements</a>
             </li>
 
             <li class="list-inline-item" id="source-file">
@@ -143,8 +143,11 @@
 
     <div class="col-md-9" id='text'>
       <h2>public interface mfi_her</h2>
-      
-
+      <p>Generic modern interface for HER.
+Supports c, z.
+See also:
+<a href="../interface/f77_her.html#proc-cher">cher</a>,<a href="../interface/f77_her.html#proc-zher">zher</a>.</p>
+<br>
 
 
         <h2>Module Procedures</h2>
@@ -153,7 +156,8 @@
 </h3></div>
     <div class="card-body">
           
-  
+  <p>Modern interface for <a href="../interface/f77_her.html#proc-cher">cher</a>.
+See also: <a href="../interface/mfi_her.html">mfi_her</a>, <a href="../interface/f77_her.html">f77_her</a>.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -168,8 +172,8 @@
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-a~79"></span>
-              complex(kind=wp),
+              <span class="anchor" id="variable-a~29"></span>
+              complex(kind=REAL32),
             </td>
 <td>intent(inout)</td>
               <td></td>            <td>
@@ -183,8 +187,8 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-x~57"></span>
-              complex(kind=wp),
+              <span class="anchor" id="variable-x~59"></span>
+              complex(kind=REAL32),
             </td>
 <td>intent(in)</td>
               <td></td>            <td>
@@ -198,7 +202,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-uplo~31"></span>
+              <span class="anchor" id="variable-uplo~5"></span>
               character(len=1),
             </td>
 <td>intent(in),</td>
@@ -228,7 +232,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-incx~57"></span>
+              <span class="anchor" id="variable-incx~59"></span>
               integer,
             </td>
 <td>intent(in),</td>
@@ -253,7 +257,8 @@
 </h3></div>
     <div class="card-body">
           
-  
+  <p>Modern interface for <a href="../interface/f77_her.html#proc-zher">zher</a>.
+See also: <a href="../interface/mfi_her.html">mfi_her</a>, <a href="../interface/f77_her.html">f77_her</a>.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -268,8 +273,8 @@
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-a~80"></span>
-              complex(kind=wp),
+              <span class="anchor" id="variable-a~30"></span>
+              complex(kind=REAL64),
             </td>
 <td>intent(inout)</td>
               <td></td>            <td>
@@ -283,8 +288,8 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-x~58"></span>
-              complex(kind=wp),
+              <span class="anchor" id="variable-x~60"></span>
+              complex(kind=REAL64),
             </td>
 <td>intent(in)</td>
               <td></td>            <td>
@@ -298,7 +303,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-uplo~32"></span>
+              <span class="anchor" id="variable-uplo~6"></span>
               character(len=1),
             </td>
 <td>intent(in),</td>
@@ -328,7 +333,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-incx~58"></span>
+              <span class="anchor" id="variable-incx~60"></span>
               integer,
             </td>
 <td>intent(in),</td>

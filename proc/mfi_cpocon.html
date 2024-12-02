@@ -71,7 +71,7 @@
 
             <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
               <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
-                 title=" 0.2% of total for procedures.">35 statements</a>
+                 title=" 0.4% of total for procedures.">35 statements</a>
             </li>
 
             <li class="list-inline-item" id="source-file">
@@ -134,7 +134,9 @@
 </h2>
     
 
-    <p>Estimates the reciprocal of the condition number of a real symmetric / complex Hermitian positive definite matrix using the Cholesky factorization computed by ?POTRF</p>
+    <p>Modern interface for <a href="../interface/f77_pocon.html#proc-cpocon">cpocon</a>.
+See also: <a href="../interface/mfi_pocon.html">mfi_pocon</a>, <a href="../interface/f77_pocon.html">f77_pocon</a>.
+Estimates the reciprocal of the condition number of a real symmetric / complex Hermitian positive definite matrix using the Cholesky factorization computed by ?POTRF</p>
 
 
     <h3>Arguments</h3>
@@ -150,8 +152,8 @@
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-a~255"></span>
-              complex(kind=wp),
+              <span class="anchor" id="variable-a~291"></span>
+              complex(kind=REAL32),
             </td>
 <td>intent(inout)</td>
               <td></td>            <td>
@@ -166,7 +168,7 @@
         <tr>
             <td>
               <span class="anchor" id="variable-anorm~7"></span>
-              real(kind=wp),
+              real(kind=REAL32),
             </td>
 <td>intent(in)</td>
               <td></td>            <td>
@@ -180,8 +182,8 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-rcond~7"></span>
-              real(kind=wp),
+              <span class="anchor" id="variable-rcond~19"></span>
+              real(kind=REAL32),
             </td>
 <td>intent(out)</td>
               <td></td>            <td>
@@ -210,7 +212,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-info~96"></span>
+              <span class="anchor" id="variable-info~128"></span>
               integer,
             </td>
 <td>intent(out),</td>

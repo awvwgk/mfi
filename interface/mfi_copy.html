@@ -71,7 +71,7 @@
 
             <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
               <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
-                 title="<p> 0.0% of total for procedures.</p>Including implementation: 94 statements,  0.6% of total for procedures.">6 statements</a>
+                 title="<p> 0.1% of total for procedures.</p>Including implementation: 94 statements,  1.0% of total for procedures.">6 statements</a>
             </li>
 
             <li class="list-inline-item" id="source-file">
@@ -145,8 +145,11 @@
 
     <div class="col-md-9" id='text'>
       <h2>public interface mfi_copy</h2>
-      
-
+      <p>Generic modern interface for COPY.
+Supports s, d, c, z.
+See also:
+<a href="../interface/f77_copy.html#proc-scopy">scopy</a>,<a href="../interface/f77_copy.html#proc-dcopy">dcopy</a>,<a href="../interface/f77_copy.html#proc-ccopy">ccopy</a>,<a href="../interface/f77_copy.html#proc-zcopy">zcopy</a>.</p>
+<br>
 
 
         <h2>Module Procedures</h2>
@@ -155,7 +158,8 @@
 </h3></div>
     <div class="card-body">
           
-  
+  <p>Modern interface for <a href="../interface/f77_copy.html#proc-scopy">scopy</a>.
+See also: <a href="../interface/mfi_copy.html">mfi_copy</a>, <a href="../interface/f77_copy.html">f77_copy</a>.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -170,8 +174,8 @@
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-x~13"></span>
-              real(kind=wp),
+              <span class="anchor" id="variable-x"></span>
+              real(kind=REAL32),
             </td>
 <td>intent(in)</td>
               <td></td>            <td>
@@ -185,8 +189,8 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-y~5"></span>
-              real(kind=wp),
+              <span class="anchor" id="variable-y"></span>
+              real(kind=REAL32),
             </td>
 <td>intent(inout)</td>
               <td></td>            <td>
@@ -200,7 +204,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-incx~13"></span>
+              <span class="anchor" id="variable-incx"></span>
               integer,
             </td>
 <td>intent(in),</td>
@@ -215,7 +219,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-incy~5"></span>
+              <span class="anchor" id="variable-incy"></span>
               integer,
             </td>
 <td>intent(in),</td>
@@ -240,7 +244,8 @@
 </h3></div>
     <div class="card-body">
           
-  
+  <p>Modern interface for <a href="../interface/f77_copy.html#proc-dcopy">dcopy</a>.
+See also: <a href="../interface/mfi_copy.html">mfi_copy</a>, <a href="../interface/f77_copy.html">f77_copy</a>.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -255,8 +260,8 @@
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-x~14"></span>
-              real(kind=wp),
+              <span class="anchor" id="variable-x~2"></span>
+              real(kind=REAL64),
             </td>
 <td>intent(in)</td>
               <td></td>            <td>
@@ -270,8 +275,8 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-y~6"></span>
-              real(kind=wp),
+              <span class="anchor" id="variable-y~2"></span>
+              real(kind=REAL64),
             </td>
 <td>intent(inout)</td>
               <td></td>            <td>
@@ -285,7 +290,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-incx~14"></span>
+              <span class="anchor" id="variable-incx~2"></span>
               integer,
             </td>
 <td>intent(in),</td>
@@ -300,7 +305,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-incy~6"></span>
+              <span class="anchor" id="variable-incy~2"></span>
               integer,
             </td>
 <td>intent(in),</td>
@@ -325,7 +330,8 @@
 </h3></div>
     <div class="card-body">
           
-  
+  <p>Modern interface for <a href="../interface/f77_copy.html#proc-ccopy">ccopy</a>.
+See also: <a href="../interface/mfi_copy.html">mfi_copy</a>, <a href="../interface/f77_copy.html">f77_copy</a>.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -340,8 +346,8 @@
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-x~15"></span>
-              complex(kind=wp),
+              <span class="anchor" id="variable-x~3"></span>
+              complex(kind=REAL32),
             </td>
 <td>intent(in)</td>
               <td></td>            <td>
@@ -355,8 +361,8 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-y~7"></span>
-              complex(kind=wp),
+              <span class="anchor" id="variable-y~3"></span>
+              complex(kind=REAL32),
             </td>
 <td>intent(inout)</td>
               <td></td>            <td>
@@ -370,7 +376,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-incx~15"></span>
+              <span class="anchor" id="variable-incx~3"></span>
               integer,
             </td>
 <td>intent(in),</td>
@@ -385,7 +391,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-incy~7"></span>
+              <span class="anchor" id="variable-incy~3"></span>
               integer,
             </td>
 <td>intent(in),</td>
@@ -410,7 +416,8 @@
 </h3></div>
     <div class="card-body">
           
-  
+  <p>Modern interface for <a href="../interface/f77_copy.html#proc-zcopy">zcopy</a>.
+See also: <a href="../interface/mfi_copy.html">mfi_copy</a>, <a href="../interface/f77_copy.html">f77_copy</a>.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -425,8 +432,8 @@
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-x~16"></span>
-              complex(kind=wp),
+              <span class="anchor" id="variable-x~4"></span>
+              complex(kind=REAL64),
             </td>
 <td>intent(in)</td>
               <td></td>            <td>
@@ -440,8 +447,8 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-y~8"></span>
-              complex(kind=wp),
+              <span class="anchor" id="variable-y~4"></span>
+              complex(kind=REAL64),
             </td>
 <td>intent(inout)</td>
               <td></td>            <td>
@@ -455,7 +462,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-incx~16"></span>
+              <span class="anchor" id="variable-incx~4"></span>
               integer,
             </td>
 <td>intent(in),</td>
@@ -470,7 +477,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-incy~8"></span>
+              <span class="anchor" id="variable-incy~4"></span>
               integer,
             </td>
 <td>intent(in),</td>

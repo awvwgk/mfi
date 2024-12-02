@@ -71,7 +71,7 @@
 
             <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
               <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
-                 title="<p> 0.0% of total for procedures.</p>Including implementation: 94 statements,  0.6% of total for procedures.">4 statements</a>
+                 title="<p> 0.0% of total for procedures.</p>Including implementation: 94 statements,  1.0% of total for procedures.">4 statements</a>
             </li>
 
             <li class="list-inline-item" id="source-file">
@@ -143,8 +143,11 @@
 
     <div class="col-md-9" id='text'>
       <h2>public interface mfi_her2k</h2>
-      
-
+      <p>Generic modern interface for HER2K.
+Supports c, z.
+See also:
+<a href="../interface/f77_her2k.html#proc-cher2k">cher2k</a>,<a href="../interface/f77_her2k.html#proc-zher2k">zher2k</a>.</p>
+<br>
 
 
         <h2>Module Procedures</h2>
@@ -153,7 +156,8 @@
 </h3></div>
     <div class="card-body">
           
-  
+  <p>Modern interface for <a href="../interface/f77_her2k.html#proc-cher2k">cher2k</a>.
+See also: <a href="../interface/mfi_her2k.html">mfi_her2k</a>, <a href="../interface/f77_her2k.html">f77_her2k</a>.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -168,8 +172,8 @@
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-a~115"></span>
-              complex(kind=wp),
+              <span class="anchor" id="variable-a~65"></span>
+              complex(kind=REAL32),
             </td>
 <td>intent(in)</td>
               <td></td>            <td>
@@ -183,8 +187,8 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-b~17"></span>
-              complex(kind=wp),
+              <span class="anchor" id="variable-b~7"></span>
+              complex(kind=REAL32),
             </td>
 <td>intent(in)</td>
               <td></td>            <td>
@@ -198,8 +202,8 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-c~19"></span>
-              complex(kind=wp),
+              <span class="anchor" id="variable-c~15"></span>
+              complex(kind=REAL32),
             </td>
 <td>intent(inout)</td>
               <td></td>            <td>
@@ -213,7 +217,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-uplo~83"></span>
+              <span class="anchor" id="variable-uplo~57"></span>
               character(len=1),
             </td>
 <td>intent(in),</td>
@@ -228,7 +232,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-trans~39"></span>
+              <span class="anchor" id="variable-trans~35"></span>
               character(len=1),
             </td>
 <td>intent(in),</td>
@@ -244,7 +248,7 @@
         <tr>
             <td>
               <span class="anchor" id="variable-alpha~51"></span>
-              complex(kind=wp),
+              complex(kind=REAL32),
             </td>
 <td>intent(in),</td>
               <td>optional</td>            <td>
@@ -283,7 +287,8 @@
 </h3></div>
     <div class="card-body">
           
-  
+  <p>Modern interface for <a href="../interface/f77_her2k.html#proc-zher2k">zher2k</a>.
+See also: <a href="../interface/mfi_her2k.html">mfi_her2k</a>, <a href="../interface/f77_her2k.html">f77_her2k</a>.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -298,8 +303,8 @@
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-a~116"></span>
-              complex(kind=wp),
+              <span class="anchor" id="variable-a~66"></span>
+              complex(kind=REAL64),
             </td>
 <td>intent(in)</td>
               <td></td>            <td>
@@ -313,8 +318,8 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-b~18"></span>
-              complex(kind=wp),
+              <span class="anchor" id="variable-b~8"></span>
+              complex(kind=REAL64),
             </td>
 <td>intent(in)</td>
               <td></td>            <td>
@@ -328,8 +333,8 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-c~20"></span>
-              complex(kind=wp),
+              <span class="anchor" id="variable-c~16"></span>
+              complex(kind=REAL64),
             </td>
 <td>intent(inout)</td>
               <td></td>            <td>
@@ -343,7 +348,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-uplo~84"></span>
+              <span class="anchor" id="variable-uplo~58"></span>
               character(len=1),
             </td>
 <td>intent(in),</td>
@@ -358,7 +363,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-trans~40"></span>
+              <span class="anchor" id="variable-trans~36"></span>
               character(len=1),
             </td>
 <td>intent(in),</td>
@@ -374,7 +379,7 @@
         <tr>
             <td>
               <span class="anchor" id="variable-alpha~52"></span>
-              complex(kind=wp),
+              complex(kind=REAL64),
             </td>
 <td>intent(in),</td>
               <td>optional</td>            <td>

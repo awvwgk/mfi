@@ -71,7 +71,7 @@
 
             <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
               <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
-                 title="<p> 0.0% of total for procedures.</p>Including implementation: 190 statements,  1.3% of total for procedures.">6 statements</a>
+                 title="<p> 0.1% of total for procedures.</p>Including implementation: 190 statements,  1.9% of total for procedures.">6 statements</a>
             </li>
 
             <li class="list-inline-item" id="source-file">
@@ -145,8 +145,11 @@
 
     <div class="col-md-9" id='text'>
       <h2>public interface mfi_trmm</h2>
-      
-
+      <p>Generic modern interface for TRMM.
+Supports s, d, c, z.
+See also:
+<a href="../interface/f77_trmm.html#proc-strmm">strmm</a>,<a href="../interface/f77_trmm.html#proc-dtrmm">dtrmm</a>,<a href="../interface/f77_trmm.html#proc-ctrmm">ctrmm</a>,<a href="../interface/f77_trmm.html#proc-ztrmm">ztrmm</a>.</p>
+<br>
 
 
         <h2>Module Procedures</h2>
@@ -155,7 +158,8 @@
 </h3></div>
     <div class="card-body">
           
-  
+  <p>Modern interface for <a href="../interface/f77_trmm.html#proc-strmm">strmm</a>.
+See also: <a href="../interface/mfi_trmm.html">mfi_trmm</a>, <a href="../interface/f77_trmm.html">f77_trmm</a>.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -170,8 +174,8 @@
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-a~123"></span>
-              real(kind=wp),
+              <span class="anchor" id="variable-a~73"></span>
+              real(kind=REAL32),
             </td>
 <td>intent(in)</td>
               <td></td>            <td>
@@ -185,8 +189,8 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-b~23"></span>
-              real(kind=wp),
+              <span class="anchor" id="variable-b~13"></span>
+              real(kind=REAL32),
             </td>
 <td>intent(inout)</td>
               <td></td>            <td>
@@ -215,7 +219,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-uplo~91"></span>
+              <span class="anchor" id="variable-uplo~65"></span>
               character(len=1),
             </td>
 <td>intent(in),</td>
@@ -261,7 +265,7 @@
         <tr>
             <td>
               <span class="anchor" id="variable-alpha~59"></span>
-              real(kind=wp),
+              real(kind=REAL32),
             </td>
 <td>intent(in),</td>
               <td>optional</td>            <td>
@@ -285,7 +289,8 @@
 </h3></div>
     <div class="card-body">
           
-  
+  <p>Modern interface for <a href="../interface/f77_trmm.html#proc-dtrmm">dtrmm</a>.
+See also: <a href="../interface/mfi_trmm.html">mfi_trmm</a>, <a href="../interface/f77_trmm.html">f77_trmm</a>.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -300,8 +305,8 @@
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-a~124"></span>
-              real(kind=wp),
+              <span class="anchor" id="variable-a~74"></span>
+              real(kind=REAL64),
             </td>
 <td>intent(in)</td>
               <td></td>            <td>
@@ -315,8 +320,8 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-b~24"></span>
-              real(kind=wp),
+              <span class="anchor" id="variable-b~14"></span>
+              real(kind=REAL64),
             </td>
 <td>intent(inout)</td>
               <td></td>            <td>
@@ -345,7 +350,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-uplo~92"></span>
+              <span class="anchor" id="variable-uplo~66"></span>
               character(len=1),
             </td>
 <td>intent(in),</td>
@@ -391,7 +396,7 @@
         <tr>
             <td>
               <span class="anchor" id="variable-alpha~60"></span>
-              real(kind=wp),
+              real(kind=REAL64),
             </td>
 <td>intent(in),</td>
               <td>optional</td>            <td>
@@ -415,7 +420,8 @@
 </h3></div>
     <div class="card-body">
           
-  
+  <p>Modern interface for <a href="../interface/f77_trmm.html#proc-ctrmm">ctrmm</a>.
+See also: <a href="../interface/mfi_trmm.html">mfi_trmm</a>, <a href="../interface/f77_trmm.html">f77_trmm</a>.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -430,8 +436,8 @@
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-a~125"></span>
-              complex(kind=wp),
+              <span class="anchor" id="variable-a~75"></span>
+              complex(kind=REAL32),
             </td>
 <td>intent(in)</td>
               <td></td>            <td>
@@ -445,8 +451,8 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-b~25"></span>
-              complex(kind=wp),
+              <span class="anchor" id="variable-b~15"></span>
+              complex(kind=REAL32),
             </td>
 <td>intent(inout)</td>
               <td></td>            <td>
@@ -475,7 +481,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-uplo~93"></span>
+              <span class="anchor" id="variable-uplo~67"></span>
               character(len=1),
             </td>
 <td>intent(in),</td>
@@ -521,7 +527,7 @@
         <tr>
             <td>
               <span class="anchor" id="variable-alpha~61"></span>
-              complex(kind=wp),
+              complex(kind=REAL32),
             </td>
 <td>intent(in),</td>
               <td>optional</td>            <td>
@@ -545,7 +551,8 @@
 </h3></div>
     <div class="card-body">
           
-  
+  <p>Modern interface for <a href="../interface/f77_trmm.html#proc-ztrmm">ztrmm</a>.
+See also: <a href="../interface/mfi_trmm.html">mfi_trmm</a>, <a href="../interface/f77_trmm.html">f77_trmm</a>.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -560,8 +567,8 @@
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-a~126"></span>
-              complex(kind=wp),
+              <span class="anchor" id="variable-a~76"></span>
+              complex(kind=REAL64),
             </td>
 <td>intent(in)</td>
               <td></td>            <td>
@@ -575,8 +582,8 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-b~26"></span>
-              complex(kind=wp),
+              <span class="anchor" id="variable-b~16"></span>
+              complex(kind=REAL64),
             </td>
 <td>intent(inout)</td>
               <td></td>            <td>
@@ -605,7 +612,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-uplo~94"></span>
+              <span class="anchor" id="variable-uplo~68"></span>
               character(len=1),
             </td>
 <td>intent(in),</td>
@@ -651,7 +658,7 @@
         <tr>
             <td>
               <span class="anchor" id="variable-alpha~62"></span>
-              complex(kind=wp),
+              complex(kind=REAL64),
             </td>
 <td>intent(in),</td>
               <td>optional</td>            <td>
